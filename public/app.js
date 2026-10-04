@@ -1,4 +1,5 @@
-let organizerSearchActive=false,organizerSearchKey='',organizerEvent=null,organizerSearchError='',organizerSearchVersion=0;
+const organizerClaimToken=new URLSearchParams(window.location.search).get('organizer_claim')||'';
+let organizerSearchActive=false,organizerSearchKey='',organizerEvent=null,organizerSearchError='',organizerSearchVersion=0,claimedOrganizerKey='';
 let currentUser=null;
 const registeredEvents=new Set(), registeringEvents=new Set();
 let treeData={waterings:0,level:1,reports:[]};const reportingEvents=new Set();
@@ -28,9 +29,14 @@ function tab(name){
 $('foodTab').onclick=()=>tab('food');$('impactTab').onclick=()=>tab('impact');
 let selectedCategory='All', selectedEventId=null, mapFramed=false;
 const foodPhotos={fruit:'photo-1490645935967-10de6ba17061',pizza:'photo-1565299624946-b28f40a0ae38',bowls:'photo-1512621776951-a57141f2eefd',bagels:'photo-1509440159596-0249088772ff',sandwiches:'photo-1528735602780-2552fd46c7af'};
+function eventImage(e){return e.image_url||`https://images.unsplash.com/${foodPhotos[e.food]||foodPhotos.bowls}?auto=format&fit=crop&w=900&q=80`}
 function remaining(deadline){if(!deadline)return 'Unconfirmed';const mins=Math.max(0,Math.ceil((Date.parse(deadline)-Date.now())/60000));return mins>=60?Math.floor(mins/60)+'h '+(mins%60)+'m':mins+'m'}
 function isUrgent(e){return e.deadline&&Date.parse(e.deadline)-Date.now()<30*60000}
 function eventPopup(e){return `<strong>${esc(e.title)}</strong><p>${esc(e.location)}</p><p>${e.sample?'Sample pickup · ':''}${e.deadline?'Pickup closes at '+esc(new Date(e.deadline).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}))+' · '+remaining(e.deadline)+' left':'Surplus not confirmed; no pickup deadline'}</p><p>${e.registration_count||0} registered to collect food</p>`}
+function registrationControl(e,index){
+ if(registeredEvents.has(e.id))return '<span class="going-tag">✓ You\'re going</span>';
+ const saving=registeringEvents.has(e.id);return `<button class="register-button" data-register="${index}" ${saving?'disabled':''}>${saving?'Saving…':"I'm going"}</button>`;
+}
 async function refresh(){
  try{
   const [data,feed]=await Promise.all([api('/api/posts'),api('/api/events')]);posts=data.posts;events=feed.events;
@@ -51,7 +57,7 @@ function renderEventsOnHome(){
  const visible=events.filter(e=>((currentUser?.is_admin&&$('showSamples').checked)||!e.sample)&&(selectedCategory==='All'||(e.category||'events.umich.edu')===selectedCategory)&&[e.title,e.location,e.organizer,e.description].join(' ').toLowerCase().includes(query));
  visible.sort((a,b)=>$('sortFood').value==='name'?a.title.localeCompare(b.title):(Date.parse(a.deadline)||Infinity)-(Date.parse(b.deadline)||Infinity));
  $('pickupCount').textContent=visible.filter(e=>e.deadline).length+' active pickups';
- $('list').innerHTML=visible.map(e=>{const i=events.indexOf(e);return `<article class="card event-card ${selectedEventId===e.id?'selected-event':''}" data-event-index="${i}"><div class="food-cover"><img src="https://images.unsplash.com/${foodPhotos[e.food]||foodPhotos.bowls}?auto=format&amp;fit=crop&amp;w=900&amp;q=80" onerror="this.onerror=null;this.src='/images/${['pizza','fruit','bagels','sandwiches','bowls'].includes(e.food)?e.food:'bowls'}.svg'" alt="Illustrative food photo, not a photo of this pickup"><div class="cover-badges"><span class="badge ${isUrgent(e)?'urgent':''}">${e.deadline?(isUrgent(e)?'Hurry':'Plenty of time'):'Event'}</span><span class="badge category">${esc(e.category||'events.umich.edu')}</span></div></div><div class="card-body">${e.sample?'<span class="sample-tag">SAMPLE · TEST DATA</span>':''}<h3>${esc(e.title)}</h3><div class="organizer">${esc(e.organizer||'UMich campus event')}</div><p>♧ ${esc(e.location||'Location not provided')}</p><p class="deadline">◷ ${e.deadline?'Pickup closes in <span data-countdown="'+esc(e.deadline)+'">'+remaining(e.deadline)+'</span>':'Surplus not confirmed'}</p><p class="count">♧ <span data-count-event="${esc(e.id)}">${e.registration_count||0}</span> registered to collect food</p>${e.food_items?.length?'<p class="muted">'+e.food_items.map(item=>esc(item.item_name)+': '+esc(item.quantity)+' '+esc(item.unit)).join(' · ')+'</p>':e.quantity?'<p class="muted">'+esc(e.quantity)+' '+esc(e.unit||'portions')+' remaining</p>':''}<details ${expanded.has(e.id)?'open':''}><summary>Event details</summary><p>${esc(e.description||'No additional instructions.')}</p>${e.url?'<a target="_blank" rel="noopener" href="'+(/^https?:\/\//.test(e.url)?esc(e.url):'#')+'">View source event</a>':''}</details><button class="register-button" data-register="${i}" ${registeredEvents.has(e.id)||registeringEvents.has(e.id)?'disabled':''}>${registeredEvents.has(e.id)?'Registered':registeringEvents.has(e.id)?'Registering…':'Register to collect'}</button>${reportControls(e,i)}<p class="muted">First come, first served. Registration does not reserve food.</p></div></article>`}).join('')||'<article class="card empty"><h3>No matching pickups or events</h3><p>Try another filter or check back for new food pickups.</p></article>';
+ $('list').innerHTML=visible.map(e=>{const i=events.indexOf(e);return `<article class="card event-card ${selectedEventId===e.id?'selected-event':''}" data-event-index="${i}"><div class="food-cover"><img src="${esc(eventImage(e))}" onerror="this.onerror=null;this.src='/images/${['pizza','fruit','bagels','sandwiches','bowls'].includes(e.food)?e.food:'bowls'}.svg'" alt="${e.image_url?'Photo uploaded by the event creator':'Illustrative food photo, not a photo of this pickup'}"><div class="cover-badges"><span class="badge ${isUrgent(e)?'urgent':''}">${e.deadline?(isUrgent(e)?'Hurry':'Plenty of time'):'Event'}</span><span class="badge category">${esc(e.category||'events.umich.edu')}</span></div></div><div class="card-body">${e.sample?'<span class="sample-tag">SAMPLE · TEST DATA</span>':''}<h3>${esc(e.title)}</h3><div class="organizer">${esc(e.organizer||'UMich campus event')}</div><p>♧ ${esc(e.location||'Location not provided')}</p><p class="deadline">◷ ${e.deadline?'Pickup closes in <span data-countdown="'+esc(e.deadline)+'">'+remaining(e.deadline)+'</span>':'Surplus not confirmed'}</p><p class="count">♧ <span data-count-event="${esc(e.id)}">${e.registration_count||0}</span> registered to collect food</p>${e.food_items?.length?'<p class="muted">'+e.food_items.map(item=>esc(item.item_name)+': '+esc(item.quantity)+' '+esc(item.unit)).join(' · ')+'</p>':e.quantity?'<p class="muted">'+esc(e.quantity)+' '+esc(e.unit||'portions')+' remaining</p>':''}<details ${expanded.has(e.id)?'open':''}><summary>Event details</summary><p>${esc(e.description||'No additional instructions.')}</p>${e.url?'<a target="_blank" rel="noopener" href="'+(/^https?:\/\//.test(e.url)?esc(e.url):'#')+'">View source event</a>':''}</details>${registrationControl(e,i)}${reportControls(e,i)}<p class="muted">Let organizers know you are coming. Food remains first come, first served.</p></div></article>`}).join('')||'<article class="card empty"><h3>No matching pickups or events</h3><p>Try another filter or check back for new food pickups.</p></article>';
  if(map)for(const e of visible){if(e.lat==null||e.lng==null)continue;
   const html=`<span class="pin-label ${isUrgent(e)?'urgent':''}"><span data-countdown="${esc(e.deadline||'')}">${remaining(e.deadline)}</span> ♧ ${e.registration_count||0}</span>`;
   const marker=L.marker([e.lat,e.lng],{icon:L.divIcon({html,iconSize:[0,0],iconAnchor:[0,0]})}).addTo(markers).bindPopup(eventPopup(e));eventMarkers.set(e,marker);
@@ -129,7 +135,7 @@ async function syncRegistrations(){
  await loadTree();renderEventsOnHome();updateRegisterButtons();
 }
 function updateRegisterButtons(){
- document.querySelectorAll('[data-register]').forEach(button=>{const e=events[Number(button.dataset.register)];if(!e)return;button.disabled=registeredEvents.has(e.id)||registeringEvents.has(e.id);button.textContent=registeredEvents.has(e.id)?'Registered':registeringEvents.has(e.id)?'Registering…':'Register to collect'});
+ document.querySelectorAll('[data-register]').forEach(button=>{const e=events[Number(button.dataset.register)];if(!e)return;button.disabled=registeringEvents.has(e.id);button.textContent=registeringEvents.has(e.id)?'Saving…':"I'm going"});
 }
 async function registerEvent(index){
  const e=events[index];if(!e||registeredEvents.has(e.id)||registeringEvents.has(e.id))return;
@@ -138,7 +144,7 @@ async function registerEvent(index){
   if(!session.user){registeredEvents.clear();updateRegisterButtons();setAuthMode('login');$('authDialog').showModal();$('authError').textContent='Please log in or create an account, then press Register again.';return}
   registeringEvents.add(e.id);updateRegisterButtons();
   await api('/api/events');
-  await api('/api/registrations',{event_id:e.id});registeredEvents.add(e.id);await refresh();$('status').textContent='Registered for '+e.title+' in CampusBite.';
+  await api('/api/registrations',{event_id:e.id});registeredEvents.add(e.id);await refresh();$('status').textContent="You're going to "+e.title+'.';
  }catch(error){$('status').textContent=error.message}
  finally{registeringEvents.delete(e.id);updateRegisterButtons()}
 }
@@ -189,7 +195,16 @@ $('logoutButton').onclick=async()=>{
  catch(error){$('status').textContent=error.message}
  finally{$('logoutButton').disabled=false}
 };
-api('/api/auth/me').then(async data=>{renderAccount(data.user);await syncRegistrations();if(!data.user){setAuthMode('login');if(!$('authDialog').open)$('authDialog').showModal()}}).catch(()=>{setAuthMode('login');if(!$('authDialog').open)$('authDialog').showModal();$('authError').textContent='Unable to check login status. You can retry logging in or add an event as a guest.'});
+async function initializeAccount(){
+ let data;
+ try{data=await api('/api/auth/me')}
+ catch(error){setAuthMode('login');if(!organizerClaimToken&&!$('authDialog').open)$('authDialog').showModal();$('authError').textContent='Unable to reach the login service. Refresh the page or add an event as a guest.';return}
+ renderAccount(data.user);
+ try{await syncRegistrations()}
+ catch(error){console.error('Account data failed to load',error);$('status').textContent='Your login was recognized, but some account data could not load. Refresh the page.'}
+ if(!data.user&&!organizerClaimToken){setAuthMode('login');if(!$('authDialog').open)$('authDialog').showModal()}
+}
+initializeAccount();
 $('authGuest').onclick=async()=>{$('authDialog').close();$('authForm').reset();$('authError').textContent='';await $('addEvent').onclick()};
 
 let plushTreeSerial=0;
@@ -222,10 +237,10 @@ function renderTree(watering=false){
  const grams=treeData.grams||0,goal=treeData.stage_goal||100;
  $('treeStats').textContent=(treeData.stage||'Seed')+(completed?' · Tree '+(completed+1):'');
  const lifetime=RescueImpact.summarize(treeData.impact?.entries||[]);
- $('personalCarbonSaved').textContent=(lifetime.co2e*1000).toLocaleString(undefined,{maximumFractionDigits:1})+' g CO2 emission reduced';
+ $('personalCarbonSaved').textContent=(lifetime.co2e*1000).toLocaleString(undefined,{maximumFractionDigits:1})+' g CO₂ emission reduced';
  $('personalWaterings').textContent=treeData.waterings+' '+(treeData.waterings===1?'watering':'waterings');
  $('treeGrowthProgress').value=treeData.progress||0;
- $('treeGrowthGoal').textContent=(goal-grams).toLocaleString(undefined,{maximumFractionDigits:1})+' g CO₂e until '+(treeData.level===5?'your next seed':['Seed','Seedling','Small tree','Medium tree','Large tree'][treeData.level||1])+'. '+grams.toLocaleString(undefined,{maximumFractionDigits:1})+' / 1500 g CO₂e for this tree.';
+ $('treeGrowthGoal').textContent=(goal-grams).toLocaleString(undefined,{maximumFractionDigits:1})+' g CO₂ emission until '+(treeData.level===5?'your next seed':['Seed','Seedling','Small tree','Medium tree','Large tree'][treeData.level||1])+'. '+grams.toLocaleString(undefined,{maximumFractionDigits:1})+' / 1500 g CO₂ emission for this tree.';
 
  renderPersonalImpact();
  $('reportHistory').innerHTML=treeData.reports.map(r=>`<div class="history-row">${esc(events.find(e=>e.id===r.event_id)?.title||r.event_id)}<br>${r.status==='got_food'?'Collected food':'Food ran out'} · ${esc(new Date(r.updated).toLocaleString())}</div>`).join('');
@@ -234,7 +249,7 @@ async function loadTree(){if(!currentUser)return;treeData=await api('/api/person
 function reportControls(e,index){
  if(!currentUser||!registeredEvents.has(e.id))return '';
  const report=treeData.reports.find(r=>r.event_id===e.id);
- return `<div class="report-controls"><button data-report="got_food" data-index="${index}" ${reportingEvents.has(e.id)?'disabled':''}>Just get it</button><button class="secondary" data-report="ran_out" data-index="${index}" ${reportingEvents.has(e.id)?'disabled':''}>It has been running out</button></div><p class="report-feedback">${report?'Tree watered ✓ · Your report: '+(report.status==='got_food'?'Collected food':'Food ran out'):'Report food availability to water your tree.'}</p>`;
+ return `<div class="report-controls"><button data-report="got_food" data-index="${index}" ${reportingEvents.has(e.id)?'disabled':''}>Just got it</button><button class="secondary" data-report="ran_out" data-index="${index}" ${reportingEvents.has(e.id)?'disabled':''}>It ran out</button></div><p class="report-feedback">${report?'Tree watered ✓ · Your report: '+(report.status==='got_food'?'Collected food':'Food ran out'):'Report food availability to water your tree.'}</p>`;
 }
 async function reportFood(index,status,pickupDetails=null){
  const e=events[index];if(!e||reportingEvents.has(e.id))return;
@@ -281,14 +296,16 @@ async function refreshImpact(){try{impactPayload=await api('/api/impact');$('imp
 function renderImpact(){
  if(!impactPayload)return;
  const demo=!!currentUser?.is_admin&&$('showSamples').checked,entries=impactPayload.entries.filter(e=>demo||!e.sample),parts=impactPayload.today.split('-').map(Number);
- const rep=RescueImpact.report(entries,impactRange,new Date(parts[0],parts[1]-1,parts[2]));const t=rep.totals;const n=value=>value.toLocaleString(undefined,{maximumFractionDigits:1});
- $('impactHeroText').innerHTML=`We’ve kept <b>${n(t.kg)} kg</b> of food out of the trash, avoiding about <b>${n(t.co2e)} kg CO₂e</b> — like not driving <b>${n(t.miles)} miles</b>.`;
+ const rep=RescueImpact.report(entries,impactRange,new Date(parts[0],parts[1]-1,parts[2])),d=rep.display;
+ const split=metric=>{const suffix=' '+metric.unit;return [metric.text.endsWith(suffix)?metric.text.slice(0,-suffix.length):metric.text,metric.unit]};
+ $('impactHeroText').innerHTML=`We’ve kept <b>${esc(d.kg.text)}</b> of food out of the trash, avoiding about <b>${esc(d.co2e.text)} CO₂ emission</b> — like not driving <b>${esc(d.miles.text)} miles</b>.`;
  $('impactLabel').textContent=demo?'INCLUDES DEMO':'SELF-REPORTED';$('impactRange').textContent=rep.range.start+' → '+rep.range.end+' · '+rep.range.days+' days';
- const cards=[['Meal equivalents rescued',n(t.meals),'', '≈ '+n(t.kg)+' kg of food'],['Estimated CO₂e avoided',n(t.co2e),'kg','From reported pickups; modeled estimate'],['Driving equivalent',n(t.miles),'miles','Tailpipe CO₂ equivalent'],['Food diverted from disposal',n(t.kg),'kg',n(t.kg/0.45359237)+' lb · estimated weight']];
+ const co2=split(d.co2e),mass=split(d.kg);const cards=[['Meal equivalents rescued',d.meals.text,'','≈ '+d.kg.text+' of food'],['Estimated CO₂ emission avoided',co2[0],co2[1],'From reported pickups; modeled estimate'],['Driving equivalent',d.miles.text,'miles','Tailpipe CO₂ equivalent'],['Food diverted from disposal',mass[0],mass[1],'Estimated food weight']];
  $('impactStats').innerHTML=cards.map(([label,value,unit,note])=>`<div class="impact-stat"><h3>${label}</h3><strong>${value}</strong><small>${unit}</small><p>${note}</p></div>`).join('');
- $('impactNote').textContent='Only quantified “Just get it” reports count. Registrations, portions offered and “ran out” reports do not count. Weight uses your CSV estimates; 1 meal equivalent = 0.5443 kg; CO₂e = food kg × '+RescueImpact.CO2E_PER_KG.toFixed(4)+'. Assumes food would otherwise be discarded. '+impactPayload.unquantified+' older pickup reports lack quantities and are excluded. '+(demo?'Sample pickup reports are included.':'Sample pickup reports are excluded.');
+ $('impactNote').textContent='Only quantified “Just get it” reports count. Registrations, portions offered and “ran out” reports do not count. Weight uses your CSV estimates; 1 meal equivalent = 0.5443 kg; CO₂ emission = food kg × '+RescueImpact.CO2E_PER_KG.toFixed(4)+'. Assumes food would otherwise be discarded. '+impactPayload.unquantified+' older pickup reports lack quantities and are excluded. '+(demo?'Sample pickup reports are included.':'Sample pickup reports are excluded.');
  if(!window.Chart){$('impactError').textContent='Charts could not load; totals remain available.';return}
  const configs=RescueImpact.chartConfigs(rep,{main:'#1f8a54',text:'#5f6f66'});
+ document.querySelector('#impactDashboard .impact-chart h3').textContent='Cumulative estimated CO₂ emission avoided ('+configs.units.cumulativeCo2e+')';
  for(const [id,key] of [['co2Chart','cumulativeCo2e']]){if(impactCharts[id]){impactCharts[id].data=configs[key].data;impactCharts[id].update('none')}else impactCharts[id]=new Chart($(id),configs[key])}
 }
 document.querySelectorAll('[data-range]').forEach(button=>button.onclick=()=>{impactRange=button.dataset.range;document.querySelectorAll('[data-range]').forEach(b=>b.classList.toggle('active',b===button));renderImpact()});
@@ -296,15 +313,17 @@ refreshImpact();setInterval(refreshImpact,5000);
 
 let eventChoices=[];
 $('addEvent').onclick=async()=>{
- $('eventError').textContent='';$('eventNameSelect').innerHTML='<option value="">Loading events…</option>';$('eventNameSelect').value='';applyEventChoice();$('eventDialog').showModal();
+ $('eventAccessNote').textContent=currentUser?'You are signed in as '+currentUser.name+'.':'No account is required. A contact method is required so the organizer receives a private event-management link.';
+ $('eventError').textContent='';$('eventModeExisting').checked=true;$('eventNameSelect').innerHTML='<option value="">Loading events…</option>';$('eventNameSelect').value='';applyEventChoice();$('eventDialog').showModal();
  try{
   await api('/api/events');const [locations,catalog]=await Promise.all([api('/api/buildings'),api('/api/event-options')]);eventChoices=catalog.events;
   $('eventBuilding').innerHTML=locations.buildings.sort((a,b)=>a.name.localeCompare(b.name)).map(b=>`<option value="${esc(b.slug)}">${esc(b.name)}</option>`).join('');
-  $('eventNameSelect').innerHTML='<option value="">Select an event</option>'+eventChoices.map(e=>`<option value="${esc(e.id)}">${esc(e.title)}${e.sample?' · Sample':''}</option>`).join('')+'<option value="other">Other</option>';
- }catch(error){$('eventError').textContent='Existing events could not load. Choose Other to enter details.';$('eventNameSelect').innerHTML='<option value="">Select an event</option><option value="other">Other</option>'}
+  $('eventNameSelect').innerHTML='<option value="">Choose an event</option>'+eventChoices.map(e=>`<option value="${esc(e.id)}">${esc(e.title)}${e.sample?' · Sample':''}</option>`).join('');
+ }catch(error){$('eventError').textContent='Existing events could not load. You can create a new event instead.';$('eventNameSelect').innerHTML='<option value="">Events unavailable</option>'}
 };
 function applyEventChoice(){
- const other=$('eventNameSelect').value==='other',form=$('eventForm');
+ const other=$('eventModeNew').checked,form=$('eventForm');
+ $('existingEventFields').classList.toggle('hidden',other);$('eventNameSelect').disabled=other;$('eventNameSelect').required=!other;
  $('manualEventFields').classList.toggle('hidden',!other);document.querySelectorAll('#manualEventFields input,#manualEventFields select,#manualEventFields button').forEach(field=>field.disabled=!other);
  $('selectedEventInfo').classList.add('hidden');
  if(other){const date=new Date(Date.now()+3600000);form.elements.start.value=new Date(date-date.getTimezoneOffset()*60000).toISOString().slice(0,16);form.elements.title.value='';form.elements.organizer.value='';setEventLocationType();return}
@@ -314,6 +333,7 @@ function applyEventChoice(){
  $('selectedEventInfo').innerHTML='<strong>'+esc(e.title)+'</strong><p>Organizer: '+esc(e.organizer)+'</p><p>Location: '+esc(e.location)+'</p><p>Event time: '+esc(display)+'</p>'; $('selectedEventInfo').classList.remove('hidden');
 }
 $('eventNameSelect').onchange=applyEventChoice;
+document.querySelectorAll('[name="event_mode"]').forEach(input=>input.onchange=applyEventChoice);
 $('eventCancel').onclick=()=>$('eventDialog').close();
 function updateEventContact(){
  const sms=$('eventContactChannel').value==='sms';
@@ -349,10 +369,17 @@ $('eventFoodTypes').addEventListener('invalid',()=>{$('eventFoodSelectionError')
 $('eventFoodTypes').onclick=event=>{const button=event.target.closest('.food-remove-row');if(button&&!button.disabled){button.closest('.event-food-row').remove();updateEventFoodUnit()}};
 $('addAnotherFood').onclick=()=>{addEventFoodRow();$('eventFoodTypes').lastElementChild.querySelector('select').focus()};
 function selectedEventFoods(){return Array.from(document.querySelectorAll('#eventFoodTypes .event-food-row')).map(row=>({item_id:row.querySelector('[data-food-type]').value,quantity:row.querySelector('[data-food-quantity]').value}))}
+function readEventPhoto(file){
+ if(!file)throw Error('Upload an event photo.');
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Event photo must be JPG, PNG or WebP.');
+ if(file.size>3*1024*1024)throw Error('Event photo must be 3 MB or smaller.');
+ return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('The event photo could not be read.'));reader.readAsDataURL(file)});
+}
+$('eventPhoto').onchange=event=>{const file=event.target.files[0];if(!file){$('eventPhotoPreview').classList.add('hidden');return}if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>3*1024*1024){$('eventError').textContent='Choose a JPG, PNG or WebP photo no larger than 3 MB.';event.target.value='';$('eventPhotoPreview').classList.add('hidden');return}const reader=new FileReader();reader.onload=()=>{$('eventPhotoPreview').src=reader.result;$('eventPhotoPreview').classList.remove('hidden')};reader.readAsDataURL(file)};
 resetEventFoods();
 $('eventForm').onsubmit=async event=>{
  event.preventDefault();$('eventSubmit').disabled=true;
- try{const body=Object.fromEntries(new FormData(event.target));body.food_items=selectedEventFoods();if(!body.food_items.length||body.food_items.some(food=>!food.item_id||!Number.isInteger(Number(food.quantity))||Number(food.quantity)<1||Number(food.quantity)>10000)){const message='Select at least one food or drink type and enter its quantity (a whole number from 1 to 10,000). Complete every added row.';$('eventFoodSelectionError').textContent=message;throw Error(message)}if($('eventNameSelect').value!=='other'){body.source_event_id=$('eventNameSelect').value;const selected=eventChoices.find(e=>e.id===body.source_event_id);if(!selected)throw Error('Select an event or choose Other.');body.start=new Date().toISOString();body.title=selected.title;body.organizer=selected.organizer;}if(body.location_type==='offcampus'){if(!chosenPlace)throw Error('Find and select your event location first.');body.place_id=chosenPlace.id}body.start=new Date(body.start).toISOString();if(body.deadline)body.deadline=new Date(body.deadline).toISOString();const result=await api('/api/user-events',body);$('eventDialog').close();event.target.reset();updateEventContact();resetEventFoods();chosenPlace=null;setEventLocationType();tab('food');await refresh();showToast('Event added successfully',eventNotificationMessage(result),!['sent','no_email'].includes(result.notification_status||result.email_status))}
+ try{const body=Object.fromEntries(new FormData(event.target));body.image_data=await readEventPhoto($('eventPhoto').files[0]);delete body.event_photo;body.food_items=selectedEventFoods();if(!body.food_items.length||body.food_items.some(food=>!food.item_id||!Number.isInteger(Number(food.quantity))||Number(food.quantity)<1||Number(food.quantity)>10000)){const message='Select at least one food or drink type and enter its quantity (a whole number from 1 to 10,000). Complete every added row.';$('eventFoodSelectionError').textContent=message;throw Error(message)}if(!$('eventModeNew').checked){body.source_event_id=$('eventNameSelect').value;const selected=eventChoices.find(e=>e.id===body.source_event_id);if(!selected)throw Error('Choose an existing event or select Create a new event.');body.start=new Date().toISOString();body.title=selected.title;body.organizer=selected.organizer;}if(body.location_type==='offcampus'){if(!chosenPlace)throw Error('Find and select your event location first.');body.place_id=chosenPlace.id}body.start=new Date(body.start).toISOString();if(body.deadline)body.deadline=new Date(body.deadline).toISOString();const result=await api('/api/user-events',body);$('eventDialog').close();event.target.reset();$('eventPhotoPreview').classList.add('hidden');updateEventContact();resetEventFoods();chosenPlace=null;setEventLocationType();tab('food');await refresh();showToast('Event added successfully',eventNotificationMessage(result),!['sent','no_email'].includes(result.notification_status||result.email_status))}
  catch(error){$('eventError').textContent=error.message}
  finally{$('eventSubmit').disabled=false}
 };
@@ -360,7 +387,7 @@ $('eventForm').onsubmit=async event=>{
 let placeResults=[],chosenPlace=null,eventLocationMap,eventLocationMarker;
 function setEventLocationType(){
  const outside=$('eventLocationType').value==='offcampus';$('campusLocationFields').classList.toggle('hidden',outside);$('offcampusLocationFields').classList.toggle('hidden',!outside);$('eventBuilding').required=!outside;
- const manual=$('eventNameSelect').value==='other';
+ const manual=$('eventModeNew').checked;
  $('eventBuilding').disabled=!manual||outside;
  for(const id of ['offcampusQuery','offcampusResults']){$(id).disabled=!manual||!outside;$(id).required=manual&&outside}
  $('findPlace').disabled=!manual||!outside;
@@ -380,26 +407,32 @@ $('offcampusResults').onchange=()=>{chosenPlace=placeResults.find(p=>p.id===$('o
 function eventNotificationMessage(result){
  const channel=result.notification_channel==='sms'?'SMS':'Email';
  const status=result.notification_status||result.email_status;
- if(status==='sent')return 'Event added. Your organizer key was accepted for delivery by the '+channel+' provider.';
- if(status==='failed')return 'Event added, but '+channel+' sending failed. The organizer key notification was not sent.';
- if(status==='no_email')return 'Event added. No contact provided, so no notification was sent. No organizer key notification has been sent.';
- return 'Event added. '+channel+' is pending service configuration. No organizer key notification has been sent.';
+ if(status==='sent')return 'Event added. Your private event-management link was accepted for delivery by the '+channel+' provider.';
+ if(status==='failed')return 'Event added, but '+channel+' sending failed. The private management link was not sent.';
+ if(status==='no_email')return 'Event added. No contact was provided, so no private management link was sent.';
+ return 'Event added. '+channel+' is pending service configuration. The private management link has not been sent.';
 }
 async function handleOrganizerSearch(){
- const query=$('searchFood').value.trim(),version=++organizerSearchVersion;
- organizerSearchActive=query.startsWith('cb_org_');organizerEvent=null;organizerSearchKey='';organizerSearchError='';
- if(!organizerSearchActive){renderEventsOnHome();return}
- if(!/^cb_org_[A-Za-z0-9_-]{43}$/.test(query)){organizerSearchError='Paste the complete organizer key.';renderOrganizerEvent();return}
- organizerSearchError='Looking up your event…';renderOrganizerEvent();
- try{const result=await api('/api/organizer-event',{organizer_key:query});if(version!==organizerSearchVersion)return;organizerSearchKey=query;organizerEvent=result.event;organizerSearchError='';renderOrganizerEvent()}
- catch(error){if(version===organizerSearchVersion){organizerSearchError=error.message;renderOrganizerEvent()}}
+ organizerSearchVersion++;organizerSearchActive=false;organizerEvent=null;organizerSearchKey='';organizerSearchError='';renderEventsOnHome();
 }
+
+async function initializeOrganizerClaim(){
+ if(!organizerClaimToken)return;
+ history.replaceState({},'',location.pathname+location.hash);
+ organizerSearchActive=true;organizerSearchError='Opening your private event management page…';renderOrganizerEvent();
+ try{
+  const result=await api('/api/organizer-key-claim',{claim_token:organizerClaimToken});
+  claimedOrganizerKey=result.organizer_key;organizerSearchKey=result.organizer_key;
+  const eventResult=await api('/api/organizer-event',{organizer_key:organizerSearchKey});organizerEvent=eventResult.event;organizerSearchError='';tab('food');renderOrganizerEvent();
+ }catch(error){organizerSearchError=error.message;renderOrganizerEvent()}
+}
+initializeOrganizerClaim();
 function renderOrganizerEvent(){
  markers?.clearLayers();eventMarkers.clear();for(const pin of googlePins)pin.setMap(null);googlePins=[];
  $('pickupCount').textContent='Organizer view';
  if(!organizerEvent){$('list').innerHTML='<article class="card empty"><p role="status">'+esc(organizerSearchError)+'</p></article>';return}
  const e=organizerEvent;
- $('list').innerHTML=`<article class="card empty"><span class="badge">Private organizer controls</span><h3>${esc(e.title)}</h3><p>${esc(e.location)}</p><p>Status: ${e.status?'Active':'False · Food has run out / event closed'}</p><button id="organizerGone" ${e.status?'':'disabled'}>${e.status?'Food has run out':'Event closed'}</button><p class="muted">Only this event can be closed using this organizer key.</p><p id="organizerUpdateMessage" role="status"></p></article>`;
+ $('list').innerHTML=`<article class="card empty"><span class="badge">Private event management</span><h3>${esc(e.title)}</h3><p>${esc(e.location)}</p><p>Status: ${e.status?'Active':'False · Food has run out / event closed'}</p><button id="organizerGone" ${e.status?'':'disabled'}>${e.status?'Food has run out':'Event closed'}</button><p class="muted">This private link manages only this event.</p><p id="organizerUpdateMessage" role="status"></p></article>`;
  if(map&&e.lat!=null){L.marker([e.lat,e.lng]).addTo(markers).bindPopup(esc(e.title));map.setView([e.lat,e.lng],16)}
  $('organizerGone').onclick=async()=>{const key=organizerSearchKey,version=organizerSearchVersion;$('organizerGone').disabled=true;try{const result=await api('/api/organizer-close',{organizer_key:key});if(version!==organizerSearchVersion)return;organizerEvent=result.event;renderOrganizerEvent();$('organizerUpdateMessage').textContent='Updated: status is False. This event is no longer publicly listed.'}catch(error){if(version===organizerSearchVersion){$('organizerUpdateMessage').textContent=error.message;$('organizerGone').disabled=false}}};
 }
@@ -411,14 +444,15 @@ function renderPersonalImpact(){
  const entries=data.entries.filter(e=>demo||!e.sample),community=data.community_entries.filter(e=>demo||!e.sample);
  const [y,m,d]=data.today.split('-').map(Number);
  const rep=RescueImpact.personalReport(entries,personalImpactRange,new Date(y,m-1,d),RescueImpact.summarize(community));
- const n=value=>value.toLocaleString(undefined,{maximumFractionDigits:1});const t=rep.totals;
+ const dpy=rep.display,split=metric=>{const suffix=' '+metric.unit;return [metric.text.endsWith(suffix)?metric.text.slice(0,-suffix.length):metric.text,metric.unit]};
  $('personalImpactRange').textContent=rep.range.start+' → '+rep.range.end+(demo?' · Includes demo reports':' · Your reported pickups');
- const cards=[['Meal equivalents rescued',t.meals,'','≈ '+n(t.kg)+' kg of food'],['Estimated CO₂e avoided',t.co2e,'kg','Modeled estimate'],['Driving equivalent',t.miles,'miles','Tailpipe CO₂ equivalent'],['Food diverted from disposal',t.kg,'kg','Estimated food weight']];
- $('personalImpactStats').innerHTML=cards.map(([label,value,unit,note])=>`<div class="impact-stat"><h3>${esc(label)}</h3><strong>${n(value)}</strong><small>${unit}</small><p>${esc(note)}</p></div>`).join('');
- $('personalRecentPickups').innerHTML=rep.recent.length?rep.recent.map(e=>`<div class="history-row"><strong>${esc(e.name)}</strong> · ${e.qty} ${esc(e.unit)}<br><span class="muted">${esc(e.date)} · ${n(e.kg)} kg food · ${n(e.co2e)} kg estimated CO₂e</span></div>`).join(''):'<p class="muted">No quantified pickups yet. Register for an event, then report what you collected with Just get it.</p>';
+ const co2=split(dpy.co2e),mass=split(dpy.kg);const cards=[['Meal equivalents rescued',dpy.meals.text,'','≈ '+dpy.kg.text+' of food'],['Estimated CO₂ emission avoided',co2[0],co2[1],'Modeled estimate'],['Driving equivalent',dpy.miles.text,'miles','Tailpipe CO₂ equivalent'],['Food diverted from disposal',mass[0],mass[1],'Estimated food weight']];
+ $('personalImpactStats').innerHTML=cards.map(([label,value,unit,note])=>`<div class="impact-stat"><h3>${esc(label)}</h3><strong>${esc(value)}</strong><small>${esc(unit)}</small><p>${esc(note)}</p></div>`).join('');
+ $('personalRecentPickups').innerHTML=rep.recent.length?rep.recent.map(e=>`<div class="history-row"><strong>${esc(e.name)}</strong> · ${e.qty} ${esc(e.unit)}<br><span class="muted">${esc(e.date)} · ${esc(e.display.kg.text)} food · ${esc(e.display.co2e.text)} estimated CO₂ emission</span></div>`).join(''):'<p class="muted">No quantified pickups yet. Register for an event, then report what you collected with Just get it.</p>';
  $('personalImpactError').textContent='';
  if(!window.Chart){$('personalImpactError').textContent='Charts could not load; your totals remain available.';return}
  const configs=RescueImpact.chartConfigs(rep,{main:'#1f8a54',text:'#5f6f66'});
+ document.querySelector('#personalImpact .impact-chart h3').textContent='Cumulative estimated CO₂ emission avoided ('+configs.units.cumulativeCo2e+')';
  for(const [id,key] of [['personalCo2Chart','cumulativeCo2e']]){if(personalImpactCharts[id]){personalImpactCharts[id].data=configs[key].data;personalImpactCharts[id].update('none')}else personalImpactCharts[id]=new Chart($(id),configs[key])}
 }
 document.querySelectorAll('[data-personal-range]').forEach(button=>button.onclick=()=>{personalImpactRange=button.dataset.personalRange;document.querySelectorAll('[data-personal-range]').forEach(b=>b.classList.toggle('active',b===button));renderPersonalImpact()});
