@@ -1,0 +1,16 @@
+item_id,item_name,unit,grams_per_unit,type
+pizza_slice,Pizza,"slices",110,food
+taco,Tacos,"pieces",100,food
+mac_cheese,"Mac & cheese","servings (~1 cup)",200,food
+boxed_lunch,Boxed lunch,"boxes",450,food
+sandwich,Sandwich,"pieces",220,food
+chicken,Wings/tenders,"pieces",45,food
+pasta,Pasta,"servings",250,food
+donut,Donuts,"pieces",65,food
+bagel,Bagels,"pieces",105,food
+cookie,Cookies,"pieces",35,food
+salad,Salad,"servings",200,food
+fruit,Fruit,"pieces",150,food
+coffee,Coffee,"cups (12 oz)",,drink
+tea,Tea,"cups (12 oz)",,drink
+milk,Milk,"cartons (8 oz)",,drink

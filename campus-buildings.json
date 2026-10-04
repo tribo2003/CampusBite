@@ -1,0 +1,2948 @@
+{
+  "source": "https://apibuilder.studentlife.umich.edu/api/1/type/building?limit=-1&visible[eq][]=1",
+  "retrieved": "2026-10-03",
+  "buildings": [
+    {
+      "id": "3",
+      "official_id": "1000842",
+      "slug": "611-church",
+      "names": [
+        "611  Church"
+      ],
+      "lat": 42.2745094,
+      "lng": -83.7343445
+    },
+    {
+      "id": "4",
+      "official_id": "1008054",
+      "slug": "hamilton-square",
+      "names": [
+        "715 N. University (Student Legal Services)",
+        "Hamilton Square"
+      ],
+      "lat": 42.2786293,
+      "lng": -83.7399521
+    },
+    {
+      "id": "5",
+      "official_id": "1000317",
+      "slug": "alfred-a-taubman-health-care-ctr",
+      "names": [
+        "Taubman A Alfred Health Care Ctr",
+        "Taubman Center",
+        "Alfred A. Taubman Health Care Ctr",
+        "Taubman"
+      ],
+      "lat": 42.2836125,
+      "lng": -83.7281109
+    },
+    {
+      "id": "6",
+      "official_id": "1000815",
+      "slug": "administrative-services",
+      "names": [
+        "ASB",
+        "Administrative Services",
+        "Administrative Services Building"
+      ],
+      "lat": 42.2689693,
+      "lng": -83.7470111
+    },
+    {
+      "id": "7",
+      "official_id": "1000406",
+      "slug": "ann-and-robert-h-lurie-biomedical-engineering-building",
+      "names": [
+        "LBME",
+        "Lurie Biomedical Engineering",
+        "Ann and Robert H. Lurie Biomedical Engineering Building"
+      ],
+      "lat": 42.2888995,
+      "lng": -83.7135819
+    },
+    {
+      "id": "8",
+      "official_id": "1000193",
+      "slug": "alexander-g-ruthven-building",
+      "names": [
+        "Alexander G. Ruthven Building",
+        "Ruthven Administration Building",
+        "RUTHVEN"
+      ],
+      "lat": 42.2782691,
+      "lng": -83.7345115
+    },
+    {
+      "id": "9",
+      "official_id": "1000059",
+      "slug": "alice-crocker-lloyd-hall",
+      "names": [
+        "ALH",
+        "Lloyd Alice Crocker Hall",
+        "Alice Lloyd Hall",
+        "Alice Crocker Lloyd Hall"
+      ],
+      "lat": 42.2812636,
+      "lng": -83.7316701
+    },
+    {
+      "id": "10",
+      "official_id": "1000192",
+      "slug": "alumni-center",
+      "names": [
+        "Alumni Center"
+      ],
+      "lat": 42.2801197,
+      "lng": -83.7376553
+    },
+    {
+      "id": "11",
+      "official_id": "1000151",
+      "slug": "alumni-memorial-hall",
+      "names": [
+        "Museum of Art",
+        "UMMA",
+        "Alumni Memorial Hall"
+      ],
+      "lat": 42.275581,
+      "lng": -83.7398205
+    },
+    {
+      "id": "12",
+      "official_id": "1000206",
+      "slug": "angell-hall-auditoriums",
+      "names": [
+        "Angell Hall",
+        "Angell Hall Auditoriums",
+        "AH"
+      ],
+      "lat": 42.2766134,
+      "lng": -83.7395907
+    },
+    {
+      "id": "13",
+      "official_id": "1000010",
+      "slug": "burnham-house",
+      "names": [
+        "Burnham House"
+      ],
+      "lat": 42.280445,
+      "lng": -83.7265272
+    },
+    {
+      "id": "14",
+      "official_id": "1000830",
+      "slug": "argus-building-i",
+      "names": [
+        "Argus Building I",
+        "Argus I Building"
+      ],
+      "lat": 42.2773628,
+      "lng": -83.7541275
+    },
+    {
+      "id": "15",
+      "official_id": "1000831",
+      "slug": "argus-building-ii",
+      "names": [
+        "Argus 2",
+        "Argus Building II",
+        "Argus II"
+      ],
+      "lat": 42.2778,
+      "lng": -83.7554126
+    },
+    {
+      "id": "16",
+      "official_id": "1000432",
+      "slug": "art-and-architecture-building",
+      "names": [
+        "Art and Architecture Building",
+        "A&AB"
+      ],
+      "lat": 42.29007145804686,
+      "lng": -83.71732651757202
+    },
+    {
+      "id": "17",
+      "official_id": "1000395",
+      "slug": "francois-xavier-bagnoud-building",
+      "names": [
+        "Bagnoud Francois-xavier Building",
+        "Francois-Xavier Bagnoud Building",
+        "FXB"
+      ],
+      "lat": 42.2935071,
+      "lng": -83.7119715
+    },
+    {
+      "id": "18",
+      "official_id": "1000704",
+      "slug": "bennie-oosterbaan-field-house-1",
+      "names": [
+        "Bennie Oosterbaan Field House",
+        "Oosterbaan Bennie Field House",
+        "Oosterbaan Field House"
+      ],
+      "lat": 42.2658871,
+      "lng": -83.7423837
+    },
+    {
+      "id": "19",
+      "official_id": "1000439",
+      "slug": "alvin-m-arvella-d-bentley-historical-library",
+      "names": [
+        "Bentley Historical Library",
+        "Alvin M & Arvella D Bentley Historical Library",
+        "Bentley Alvin M & Arvella D Historical Library"
+      ],
+      "lat": 42.2895478,
+      "lng": -83.712245
+    },
+    {
+      "id": "20",
+      "official_id": "1000051",
+      "slug": "betsy-barbour-house",
+      "names": [
+        "Barbour Betsy House",
+        "Betsy Barbour House"
+      ],
+      "lat": 42.2772652,
+      "lng": -83.7415542
+    },
+    {
+      "id": "21",
+      "official_id": "1000407",
+      "slug": "george-g-gg-brown-laboratories",
+      "names": [
+        "Brown George Granger Memorial Laboratories",
+        "GG Brown Laboratory",
+        "George G. (GG) Brown Laboratories",
+        "GGBL"
+      ],
+      "lat": 42.2932019,
+      "lng": -83.7137594
+    },
+    {
+      "id": "22",
+      "official_id": "1000210",
+      "slug": "lawrence-d-buhl-research-center-for-human-genetics",
+      "names": [
+        "Buhl Lawrence D Research Cen For Human Genetics",
+        "Buhl Res Cen for Human Genetics",
+        "Lawrence D Buhl Research Center For Human Genetics"
+      ],
+      "lat": 42.2834582,
+      "lng": -83.7337191
+    },
+    {
+      "id": "23",
+      "official_id": "1000799",
+      "slug": "buhr-building",
+      "names": [
+        "Buhr Building"
+      ],
+      "lat": 42.2706698,
+      "lng": -83.7469115
+    },
+    {
+      "id": "24",
+      "official_id": "1000555",
+      "slug": "joseph-a-marguerite-k-bursley-hall",
+      "names": [
+        "Bursley Hall",
+        "Bursley Joseph A & Marguerite K Hall",
+        "BURS",
+        "Joseph A & Marguerite K Bursley Hall"
+      ],
+      "lat": 42.293734,
+      "lng": -83.7209439
+    },
+    {
+      "id": "25",
+      "official_id": "1000155",
+      "slug": "burton-memorial-tower",
+      "names": [
+        "SMTD",
+        "Burton Memorial Tower"
+      ],
+      "lat": 42.2794378,
+      "lng": -83.7387105
+    },
+    {
+      "id": "28",
+      "official_id": "1000188",
+      "slug": "1100-north-university-building-central-campus-transit-center-nub",
+      "names": [
+        "1100 North University Building",
+        "1100 North University Building (Central Campus Transit Center) NUB"
+      ],
+      "lat": 42.2775033,
+      "lng": -83.7353997
+    },
+    {
+      "id": "29",
+      "official_id": "1000312",
+      "slug": "neuroscience-hospital-unit-2",
+      "names": [
+        "Mott Children's Hospital",
+        "MOTT",
+        "Neuroscience Hospital Unit 2"
+      ],
+      "lat": 42.2831124,
+      "lng": -83.7298152
+    },
+    {
+      "id": "30",
+      "official_id": "1000742",
+      "slug": "campus-safety-services-building",
+      "names": [
+        "CSSB",
+        "Campus Safety Services Building"
+      ],
+      "lat": 42.2651836,
+      "lng": -83.7439482
+    },
+    {
+      "id": "31",
+      "official_id": "1000301",
+      "slug": "rogel-cancer-center",
+      "names": [
+        "Cancer Center",
+        "Rogel Cancer Center"
+      ],
+      "lat": 42.2844575,
+      "lng": -83.7313652
+    },
+    {
+      "id": "32",
+      "official_id": "1000226",
+      "slug": "central-campus-rec-bld-margaret-bell-pool-under-construction",
+      "names": [
+        "Central Campus Rec Bld Bell Margaret Pool (Under Construction)",
+        "Central Campus Rec Bld Margaret Bell Pool (Under Construction)",
+        "CCRB",
+        "Central Campus Recreation Building (Bell Pool - Under Construction)"
+      ],
+      "lat": 42.2782207,
+      "lng": -83.7327349
+    },
+    {
+      "id": "33",
+      "official_id": "1000260",
+      "slug": "central-power-plant",
+      "names": [
+        "Central Power Plant"
+      ],
+      "lat": 42.2807602,
+      "lng": -83.7345005
+    },
+    {
+      "id": "34",
+      "official_id": "1000158",
+      "slug": "willard-h-dow-chemistry-laboratory",
+      "names": [
+        "Chemistry Dow Lab",
+        "Chemistry & Dow Willard H Laboratory",
+        "Willard H Dow Chemistry & Laboratory"
+      ],
+      "lat": 42.2780409,
+      "lng": -83.7370235
+    },
+    {
+      "id": "35",
+      "official_id": "1000700",
+      "slug": "crisler-center",
+      "names": [
+        "Crisler Arena",
+        "Crisler Center"
+      ],
+      "lat": 42.2650247,
+      "lng": -83.7466546
+    },
+    {
+      "id": "36",
+      "official_id": "1000443",
+      "slug": "chrysler-center-continuing-engineering-education",
+      "names": [
+        "Chrysler Center Continuing Engineering Education",
+        "CHRYS",
+        "Chrysler Center"
+      ],
+      "lat": 42.2907991,
+      "lng": -83.7167144
+    },
+    {
+      "id": "37",
+      "official_id": "1000732",
+      "slug": "clifford-p-keen-arena",
+      "names": [
+        "Cliff Keen Arena",
+        "Keen Clifford P Arena",
+        "Clifford P Keen Arena"
+      ],
+      "lat": 42.2693723,
+      "lng": -83.7412709
+    },
+    {
+      "id": "38",
+      "official_id": "0",
+      "slug": "clinical-faculty-office-building",
+      "names": [
+        "Clinical Faculty Office Building"
+      ],
+      "lat": 42.2835693,
+      "lng": -83.7378464
+    },
+    {
+      "id": "39",
+      "official_id": "1000710",
+      "slug": "coliseum",
+      "names": [
+        "Coliseum"
+      ],
+      "lat": 42.2720309,
+      "lng": -83.7459205
+    },
+    {
+      "id": "41",
+      "official_id": "1000420",
+      "slug": "engineering-auxiliary-building-eab",
+      "names": [
+        "Engineering Auxiliary Building EAB"
+      ],
+      "lat": 42.2890005,
+      "lng": -83.7143906
+    },
+    {
+      "id": "42",
+      "official_id": "1000403",
+      "slug": "mortimer-e-cooley-building",
+      "names": [
+        "COOL",
+        "Mortimer E Cooley Building",
+        "Cooley Building",
+        "Cooley Mortimer E Building"
+      ],
+      "lat": 42.290601,
+      "lng": -83.7136947
+    },
+    {
+      "id": "44",
+      "official_id": "1000053",
+      "slug": "couzens-hall",
+      "names": [
+        "COUZENS",
+        "Couzens Hall"
+      ],
+      "lat": 42.2819219,
+      "lng": -83.732571
+    },
+    {
+      "id": "45",
+      "official_id": "1000189",
+      "slug": "samuel-trask-dana-building",
+      "names": [
+        "Dana Building",
+        "Samuel Trask Dana Building",
+        "Dana Samuel Trask Building"
+      ],
+      "lat": 42.2773248,
+      "lng": -83.7366267
+    },
+    {
+      "id": "46",
+      "official_id": "1000225",
+      "slug": "1310-north-university-court-building",
+      "names": [
+        "1310 North University Court Building"
+      ],
+      "lat": 42.2781191,
+      "lng": -83.7323968
+    },
+    {
+      "id": "47",
+      "official_id": "1000165",
+      "slug": "weiser-hall",
+      "names": [
+        "WEIS",
+        "Weiser Hall"
+      ],
+      "lat": 42.276624,
+      "lng": -83.735146
+    },
+    {
+      "id": "49",
+      "official_id": "1000162",
+      "slug": "dental-building-and-w-k-kellogg-foundation-institute",
+      "names": [
+        "Dental & W.K. Kellogg Institute",
+        "Dental Building and W K Kellogg Foundation Institute",
+        "Dental Bldg And W K Kellogg Foundation Institute",
+        "DENT"
+      ],
+      "lat": 42.2792432,
+      "lng": -83.7361365
+    },
+    {
+      "id": "50",
+      "official_id": "1000718",
+      "slug": "donald-b-canham-natatorium-1",
+      "names": [
+        "Canham Donald B Natatorium",
+        "Donald B Canham Natatorium",
+        "Donald B. Canham Natatorium"
+      ],
+      "lat": 42.2693049,
+      "lng": -83.7437801
+    },
+    {
+      "id": "51",
+      "official_id": "1000447",
+      "slug": "herbert-h-dow-building",
+      "names": [
+        "Dow Herbert H Building",
+        "DOW",
+        "Herbert H. Dow  Building",
+        "Herbert H Dow Building"
+      ],
+      "lat": 42.2930064,
+      "lng": -83.7154285
+    },
+    {
+      "id": "52",
+      "official_id": "1000440",
+      "slug": "earl-v-moore-building",
+      "names": [
+        "Earl V. Moore Building",
+        "SM"
+      ],
+      "lat": 42.2904769,
+      "lng": -83.7209897
+    },
+    {
+      "id": "53",
+      "official_id": "1000166",
+      "slug": "east-hall",
+      "names": [
+        "EH",
+        "East Hall"
+      ],
+      "lat": 42.2757557,
+      "lng": -83.7351982
+    },
+    {
+      "id": "54",
+      "official_id": "1000054",
+      "slug": "east-quadrangle",
+      "names": [
+        "EQ",
+        "East Quadrangle"
+      ],
+      "lat": 42.2729423,
+      "lng": -83.7351494
+    },
+    {
+      "id": "55",
+      "official_id": "1000211",
+      "slug": "school-of-kinesiology-building",
+      "names": [
+        "NS",
+        "School of Kinesiology Building"
+      ],
+      "lat": 42.2780512,
+      "lng": -83.7389075
+    },
+    {
+      "id": "56",
+      "official_id": "1000448",
+      "slug": "electrical-engineering-and-computer-science-bld",
+      "names": [
+        "Electrical Engineering and Computer Science Building",
+        "EECS",
+        "Electrical Engineering And Computer Science Bld"
+      ],
+      "lat": 42.2924109,
+      "lng": -83.7140791
+    },
+    {
+      "id": "57",
+      "official_id": "1000424",
+      "slug": "gorguze-family-laboratory",
+      "names": [
+        "Gorguze Family Laboratory",
+        "GFL"
+      ],
+      "lat": 42.293318,
+      "lng": -83.7107115
+    },
+    {
+      "id": "59",
+      "official_id": "1000055",
+      "slug": "fletcher-hall",
+      "names": [
+        "Fletcher Hall"
+      ],
+      "lat": 42.2701676,
+      "lng": -83.7427393
+    },
+    {
+      "id": "60",
+      "official_id": "1000404",
+      "slug": "michigan-memorial-phoenix-project-laboratory",
+      "names": [
+        "Michigan Memorial Phoenix Project Laboratory",
+        "Michigan Memorial Phoenix Project"
+      ],
+      "lat": 42.2909381,
+      "lng": -83.7146478
+    },
+    {
+      "id": "61",
+      "official_id": "1000204",
+      "slug": "henry-frieze-vaughan-school-of-public-health-building",
+      "names": [
+        "FB",
+        "Vaughan Henry Frieze Public Health Building",
+        "Henry Frieze Vaughan School of Public Health Building",
+        "Public Health I (Vaughan Building)"
+      ],
+      "lat": 42.2808203,
+      "lng": -83.7303489
+    },
+    {
+      "id": "62",
+      "official_id": "1000446",
+      "slug": "gerald-r-ford-library-1",
+      "names": [
+        "Gerald R Ford Library",
+        "FORD LIB",
+        "Gerald Ford Library",
+        "Ford Gerald R Library"
+      ],
+      "lat": 42.2885619,
+      "lng": -83.7122828
+    },
+    {
+      "id": "63",
+      "official_id": "1000705",
+      "slug": "glenn-e-schembechler-hall",
+      "names": [
+        "Schembechler Glenn E Hall",
+        "Schembechler Hall",
+        "Glenn E. Schembechler Hall",
+        "SCHEM"
+      ],
+      "lat": 42.2660638,
+      "lng": -83.741135
+    },
+    {
+      "id": "64",
+      "official_id": "1000725",
+      "slug": "golf-clubhouse",
+      "names": [
+        "UM Golf Course",
+        "Golf Clubhouse"
+      ],
+      "lat": 42.2628391,
+      "lng": -83.7435599
+    },
+    {
+      "id": "65",
+      "official_id": "1000181",
+      "slug": "harlan-h-hatcher-graduate-library",
+      "names": [
+        "Hatcher Harlan H South Graduate Library",
+        "Harlan H. Hatcher Graduate Library",
+        "Hatcher Graduate Library"
+      ],
+      "lat": 42.2759309,
+      "lng": -83.7381889
+    },
+    {
+      "id": "66",
+      "official_id": "1000201",
+      "slug": "marie-dorothy-hartwig-administration-building",
+      "names": [
+        "Marie Dorothy Hartwig Administration Building",
+        "Hartwig Marie Dorothy Administration Building",
+        "Hartwig Administration Building"
+      ],
+      "lat": 42.2689574,
+      "lng": -83.7408686
+    },
+    {
+      "id": "68",
+      "official_id": "1000176",
+      "slug": "university-health-services",
+      "names": [
+        "UHS",
+        "Health Service",
+        "University Health Services"
+      ],
+      "lat": 42.2797603,
+      "lng": -83.7366944
+    },
+    {
+      "id": "69",
+      "official_id": "1000177",
+      "slug": "hill-auditorium",
+      "names": [
+        "Hill Auditorium"
+      ],
+      "lat": 42.2791419,
+      "lng": -83.739066
+    },
+    {
+      "id": "70",
+      "official_id": "1000204",
+      "slug": "henry-frieze-vaughan-public-health-building",
+      "names": [
+        "Vaughan Henry Frieze Public Health Building",
+        "School of Public Health Bldg I and Crossroads and Tower",
+        "Henry Frieze Vaughan Public Health Building",
+        "SPH"
+      ],
+      "lat": 42.2808203,
+      "lng": -83.7303489
+    },
+    {
+      "id": "71",
+      "official_id": "1000172",
+      "slug": "horace-h-rackham-school-of-graduate-studies",
+      "names": [
+        "Rackham Graduate School (Horace H.)",
+        "Rackham Horace H School Of Graduate Studies",
+        "RACK",
+        "Horace H. Rackham School Of Graduate Studies"
+      ],
+      "lat": 42.2808282,
+      "lng": -83.7382855
+    },
+    {
+      "id": "72",
+      "official_id": "1000179",
+      "slug": "hutchins-hall",
+      "names": [
+        "Hutchins Hall",
+        "HUTCH"
+      ],
+      "lat": 42.2736517,
+      "lng": -83.740096
+    },
+    {
+      "id": "73",
+      "official_id": "1000429",
+      "slug": "industrial-and-operations-engineering-building",
+      "names": [
+        "IOE",
+        "Industrial and Operations Engineering Building",
+        "Industrial And Operations Engineering Building"
+      ],
+      "lat": 42.2910678,
+      "lng": -83.7137347
+    },
+    {
+      "id": "74",
+      "official_id": "1000814",
+      "slug": "institute-of-continuing-legal-ed",
+      "names": [
+        "ICLE",
+        "Institute Of Continuing Legal Ed",
+        "Institute of Continuing Legal Education"
+      ],
+      "lat": 42.2685413,
+      "lng": -83.7479236
+    },
+    {
+      "id": "75",
+      "official_id": "1000435",
+      "slug": "engineering-research-building-1",
+      "names": [
+        "Engineering Research Building (ERB - formerly IST)",
+        "Engineering Research Building 1"
+      ],
+      "lat": 42.289496,
+      "lng": -83.7148794
+    },
+    {
+      "id": "76",
+      "official_id": "1000145",
+      "slug": "institute-for-social-research",
+      "names": [
+        "Institute For Social Research",
+        "ISR"
+      ],
+      "lat": 42.2766777,
+      "lng": -83.743623
+    },
+    {
+      "id": "77",
+      "official_id": "1000719",
+      "slug": "intramural-sports-building",
+      "names": [
+        "IMSB",
+        "Intramural Sports Building"
+      ],
+      "lat": 42.2693888,
+      "lng": -83.7422469
+    },
+    {
+      "id": "78",
+      "official_id": "1000108",
+      "slug": "lawyers-club-and-charles-t-munger-residences",
+      "names": [
+        "Lawyers Club And Munger Charles T Residences",
+        "Lawyers Club And Charles T. Munger Residences",
+        "Lawyer's Club & Munger Residences"
+      ],
+      "lat": 42.2745707,
+      "lng": -83.7396861
+    },
+    {
+      "id": "79",
+      "official_id": "1000731",
+      "slug": "john-p-weidenbach-hall",
+      "names": [
+        "Weidenbach John P Hall",
+        "Weidenbach Hall",
+        "John P. Weidenbach Hall"
+      ],
+      "lat": 42.2693283,
+      "lng": -83.7408503
+    },
+    {
+      "id": "80",
+      "official_id": "1000101",
+      "slug": "kresge-hearing-research",
+      "names": [
+        "Kresge Hearing Research",
+        "KHRI"
+      ],
+      "lat": 42.2825432,
+      "lng": -83.7327347
+    },
+    {
+      "id": "81",
+      "official_id": "1000182",
+      "slug": "kresge-medical-research-i",
+      "names": [
+        "Kresge Medical Research I"
+      ],
+      "lat": 42.2828827,
+      "lng": -83.7331848
+    },
+    {
+      "id": "82",
+      "official_id": "1000171",
+      "slug": "kresge-medical-research-ii",
+      "names": [
+        "Kresge Medical Research II"
+      ],
+      "lat": 42.2824669,
+      "lng": -83.7319336
+    },
+    {
+      "id": "83",
+      "official_id": "1000199",
+      "slug": "kresge-medical-research-iii",
+      "names": [
+        "Kresge Medical Research Building III",
+        "Kresge Medical Research III"
+      ],
+      "lat": 42.282856,
+      "lng": -83.733284
+    },
+    {
+      "id": "84",
+      "official_id": "1000183",
+      "slug": "lane-hall",
+      "names": [
+        "Lane Hall",
+        "LANE"
+      ],
+      "lat": 42.2799385,
+      "lng": -83.7412432
+    },
+    {
+      "id": "86",
+      "official_id": "1000400",
+      "slug": "walter-e-lay-automotive-engineering-laboratory",
+      "names": [
+        "AL",
+        "Walter E Lay Auto Lab",
+        "Walter E. Lay Automotive Engineering Laboratory",
+        "Lay Walter E Automotive Engineering Laboratory"
+      ],
+      "lat": 42.2918763,
+      "lng": -83.7138915
+    },
+    {
+      "id": "87",
+      "official_id": "1000150",
+      "slug": "literature-science-and-the-arts",
+      "names": [
+        "LSA",
+        "LSA Building",
+        "Literature Science And The Arts"
+      ],
+      "lat": 42.276204,
+      "lng": -83.741275
+    },
+    {
+      "id": "88",
+      "official_id": "1000154",
+      "slug": "lorch-hall",
+      "names": [
+        "LORCH",
+        "Lorch Hall"
+      ],
+      "lat": 42.2737408,
+      "lng": -83.7374725
+    },
+    {
+      "id": "89",
+      "official_id": "1000214",
+      "slug": "lsa-administration-annex",
+      "names": [
+        "Lsa Administration Annex",
+        "LSA Administration Annex"
+      ],
+      "lat": 42.2816221,
+      "lng": -83.7368183
+    },
+    {
+      "id": "90",
+      "official_id": "1000397",
+      "slug": "robert-h-lurie-engineering-center",
+      "names": [
+        "Lurie Robert H. Engin. Ctr",
+        "Robert H. Lurie Engineering Center",
+        "Lurie Robert H Engineering Ctr",
+        "LEC"
+      ],
+      "lat": 42.2915219,
+      "lng": -83.7138255
+    },
+    {
+      "id": "91",
+      "official_id": "1000394",
+      "slug": "ann-robert-h-lurie-tower",
+      "names": [
+        "Ann & Robert H. Lurie Tower",
+        "Lurie Ann & Robert H. Tower",
+        "Lurie Ann And Robert H Tower"
+      ],
+      "lat": 42.2919897,
+      "lng": -83.7161936
+    },
+    {
+      "id": "95",
+      "official_id": "1000052",
+      "slug": "martha-cook-building-1",
+      "names": [
+        "Martha Cook Building",
+        "Martha Cook Residence",
+        "Cook Martha Building"
+      ],
+      "lat": 42.2745262,
+      "lng": -83.7379578
+    },
+    {
+      "id": "96",
+      "official_id": "1000057",
+      "slug": "mary-bartron-henderson-house",
+      "names": [
+        "Mary Bartron Henderson House",
+        "Henderson House",
+        "Henderson Mary Bartron House"
+      ],
+      "lat": 42.2718447,
+      "lng": -83.7318233
+    },
+    {
+      "id": "97",
+      "official_id": "1000060",
+      "slug": "mary-butler-markley-hall",
+      "names": [
+        "Mary Markley Hall",
+        "Markley Mary Butler Hall",
+        "MARKLEY",
+        "Mary Butler Markley Hall"
+      ],
+      "lat": 42.2808883,
+      "lng": -83.7288603
+    },
+    {
+      "id": "99",
+      "official_id": "1000318",
+      "slug": "neuroscience-hospital-unit-4",
+      "names": [
+        "Maternal Child Health Center",
+        "Neuroscience Hospital Unit 4"
+      ],
+      "lat": 42.2831409,
+      "lng": -83.7288288
+    },
+    {
+      "id": "100",
+      "official_id": "1000223",
+      "slug": "medical-sciences-research-bldg-i",
+      "names": [
+        "Medical Science Research Building 1",
+        "MSC1",
+        "Medical Sciences Research Bldg I"
+      ],
+      "lat": 42.2845989,
+      "lng": -83.7341845
+    },
+    {
+      "id": "101",
+      "official_id": "1000229",
+      "slug": "medical-sciences-research-bldg-iii",
+      "names": [
+        "Medical Sciences Research Bldg III",
+        "MSRB3",
+        "Medical Science Research Building 3"
+      ],
+      "lat": 42.2842196,
+      "lng": -83.7347411
+    },
+    {
+      "id": "102",
+      "official_id": "1000200",
+      "slug": "medical-science-unit-ii",
+      "names": [
+        "Medical Science Unit II"
+      ],
+      "lat": 42.2840576,
+      "lng": -83.733837
+    },
+    {
+      "id": "103",
+      "official_id": "1000213",
+      "slug": "medical-sciences-research-bldg-ii",
+      "names": [
+        "MSC2",
+        "Medical Science Research Building 2",
+        "Medical Sciences Research Bldg II"
+      ],
+      "lat": 42.2849093,
+      "lng": -83.7336995
+    },
+    {
+      "id": "104",
+      "official_id": "1000190",
+      "slug": "medical-science-unit-i",
+      "names": [
+        "Medical Science Unit I"
+      ],
+      "lat": 42.2841405,
+      "lng": -83.7325438
+    },
+    {
+      "id": "105",
+      "official_id": "1000308",
+      "slug": "med-inn",
+      "names": [
+        "Med-inn",
+        "Medical Inn"
+      ],
+      "lat": 42.2836817,
+      "lng": -83.7301573
+    },
+    {
+      "id": "106",
+      "official_id": "1000100",
+      "slug": "molecular-behavioral-neuroscience-institute",
+      "names": [
+        "Molecular & Behavioral Neuroscience Institute",
+        "Molecular and Behavioral Neuroscience Institute"
+      ],
+      "lat": 42.2828885,
+      "lng": -83.7340902
+    },
+    {
+      "id": "108",
+      "official_id": "1000191",
+      "slug": "michigan-league",
+      "names": [
+        "Michigan League",
+        "LEAG"
+      ],
+      "lat": 42.2792957,
+      "lng": -83.7375764
+    },
+    {
+      "id": "110",
+      "official_id": "1008067",
+      "slug": "mike-and-mary-wallace-house",
+      "names": [
+        "Mike & Mary Wallace House",
+        "Mike and Mary Wallace House",
+        "Wallace Mike And Mary House"
+      ],
+      "lat": 42.2745687,
+      "lng": -83.726425
+    },
+    {
+      "id": "111",
+      "official_id": "1000207",
+      "slug": "modern-languages-building",
+      "names": [
+        "Modern Languages Building",
+        "MLB"
+      ],
+      "lat": 42.2798628,
+      "lng": -83.7390639
+    },
+    {
+      "id": "112",
+      "official_id": "1000061",
+      "slug": "eliza-m-mosher-myra-b-jordan-hall",
+      "names": [
+        "MOJO",
+        "Mosher Eliza M Hall & Jordan Myra B Hall",
+        "Mosher-Jordan Hall",
+        "Eliza M. Mosher & Myra B. Jordan Hall"
+      ],
+      "lat": 42.2801063,
+      "lng": -83.7315207
+    },
+    {
+      "id": "113",
+      "official_id": "1000415",
+      "slug": "naval-architecture-and-marine-engineering",
+      "names": [
+        "Naval Architecture And Marine Engineering",
+        "NAME",
+        "Naval Arch. & Marine Engineering"
+      ],
+      "lat": 42.293069,
+      "lng": -83.7091597
+    },
+    {
+      "id": "114",
+      "official_id": "1000600",
+      "slug": "northwood-community-center",
+      "names": [
+        "Northwood Community Center"
+      ],
+      "lat": 42.2973986,
+      "lng": -83.7091114
+    },
+    {
+      "id": "115",
+      "official_id": "1000427",
+      "slug": "north-campus-recreation-building",
+      "names": [
+        "NCRB",
+        "North Campus Recreation Building"
+      ],
+      "lat": 42.2955063,
+      "lng": -83.7201695
+    },
+    {
+      "id": "117",
+      "official_id": "1000062",
+      "slug": "helen-h-newberry-residence",
+      "names": [
+        "Helen H. Newberry Residence",
+        "Newberry Helen H Residence",
+        "Newberry Residence"
+      ],
+      "lat": 42.2769389,
+      "lng": -83.7415513
+    },
+    {
+      "id": "118",
+      "official_id": "1000222",
+      "slug": "michigan-news-building",
+      "names": [
+        "Michigan News Building",
+        "News and Information Svcs Bldg",
+        "NIS"
+      ],
+      "lat": 42.2774272,
+      "lng": -83.7422951
+    },
+    {
+      "id": "122",
+      "official_id": "1000453",
+      "slug": "northwood-i-apartments",
+      "names": [
+        "Northwood I Apartments",
+        "Northwood I Apts 453"
+      ],
+      "lat": 42.2965299,
+      "lng": -83.7133734
+    },
+    {
+      "id": "123",
+      "official_id": "1000462",
+      "slug": "northwood-ii-apartments",
+      "names": [
+        "Northwood II Apts 462",
+        "Northwood II Apartments"
+      ],
+      "lat": 42.2985071,
+      "lng": -83.7130293
+    },
+    {
+      "id": "124",
+      "official_id": "1000501",
+      "slug": "northwood-iii-apartments",
+      "names": [
+        "Northwood III Apartments"
+      ],
+      "lat": 42.2975349,
+      "lng": -83.7174466
+    },
+    {
+      "id": "125",
+      "official_id": "1000602",
+      "slug": "northwood-iv-apartments",
+      "names": [
+        "Northwood IV Apartments"
+      ],
+      "lat": 42.2980682,
+      "lng": -83.7108948
+    },
+    {
+      "id": "129",
+      "official_id": "1000890",
+      "slug": "perry-building",
+      "names": [
+        "Perry Building"
+      ],
+      "lat": 42.274503,
+      "lng": -83.7453881
+    },
+    {
+      "id": "130",
+      "official_id": "1000230",
+      "slug": "college-of-pharmacy-building",
+      "names": [
+        "College Of Pharmacy Building",
+        "Pharmacy College"
+      ],
+      "lat": 42.2771403,
+      "lng": -83.7350416
+    },
+    {
+      "id": "131",
+      "official_id": "1000442",
+      "slug": "wilbur-k-pierpont-commons",
+      "names": [
+        "Pierpont Wilbur K Commons",
+        "Wilbur K Pierpont Commons",
+        "Pierpont Commons",
+        "PIER"
+      ],
+      "lat": 42.2911356,
+      "lng": -83.7174755
+    },
+    {
+      "id": "132",
+      "official_id": "1000180",
+      "slug": "power-center-for-performing-arts",
+      "names": [
+        "Power Center for the Performing Arts",
+        "Power Center For Performing Arts",
+        "POWER CTR"
+      ],
+      "lat": 42.2808067,
+      "lng": -83.7357803
+    },
+    {
+      "id": "133",
+      "official_id": "1000208",
+      "slug": "harrison-m-randall-laboratory",
+      "names": [
+        "Harrison M. Randall Laboratory",
+        "Randall Harrison M Laboratory",
+        "Randall Laboratory",
+        "RAND"
+      ],
+      "lat": 42.2766634,
+      "lng": -83.7366046
+    },
+    {
+      "id": "134",
+      "official_id": "1000733",
+      "slug": "ray-fisher-baseball-stadium",
+      "names": [
+        "Ray Fisher Baseball Stadium",
+        "Fisher Ray Baseball Stadium"
+      ],
+      "lat": 42.2679918,
+      "lng": -83.7418653
+    },
+    {
+      "id": "136",
+      "official_id": "1000221",
+      "slug": "marsal-family-school-of-education",
+      "names": [
+        "SEB",
+        "Marsal Family School of Education",
+        "Education School Of",
+        "Marsal Family School Of Education"
+      ],
+      "lat": 42.2738636,
+      "lng": -83.736401
+    },
+    {
+      "id": "137",
+      "official_id": "1000333",
+      "slug": "school-of-nursing-building-2",
+      "names": [
+        "SNB",
+        "School Of Nursing Building 2",
+        "School of Nursing"
+      ],
+      "lat": 42.28510293055156,
+      "lng": -83.73854815529785
+    },
+    {
+      "id": "138",
+      "official_id": "1000219",
+      "slug": "school-of-social-work-building",
+      "names": [
+        "School of Social Work Building",
+        "School Of Social Work Building",
+        "SSWB"
+      ],
+      "lat": 42.274579,
+      "lng": -83.7364591
+    },
+    {
+      "id": "139",
+      "official_id": "1000227",
+      "slug": "harold-t-and-vivian-b-shapiro-library",
+      "names": [
+        "Shapiro Library",
+        "Harold T And Vivian B Shapiro Library",
+        "UGLI",
+        "Shapiro Harold T And Vivian B Library"
+      ],
+      "lat": 42.2756087,
+      "lng": -83.7371803
+    },
+    {
+      "id": "141",
+      "official_id": "1000063",
+      "slug": "south-quadrangle",
+      "names": [
+        "South Quad",
+        "SQ",
+        "South Quadrangle"
+      ],
+      "lat": 42.2736964,
+      "lng": -83.7421333
+    },
+    {
+      "id": "142",
+      "official_id": "1000441",
+      "slug": "climate-and-space-research-building-csrb",
+      "names": [
+        "Climate and Space Research Building",
+        "SRB",
+        "Climate and Space Research Building (CSRB)"
+      ],
+      "lat": 42.2943882,
+      "lng": -83.7114993
+    },
+    {
+      "id": "144",
+      "official_id": "1000445",
+      "slug": "frederick-stearns-building",
+      "names": [
+        "Frederick Stearns Building",
+        "STRNS",
+        "Stearns Frederick Building",
+        "Stearns Building"
+      ],
+      "lat": 42.2954117,
+      "lng": -83.7259952
+    },
+    {
+      "id": "146",
+      "official_id": "1000215",
+      "slug": "student-activities-building",
+      "names": [
+        "Student Activities",
+        "SAB",
+        "Student Activities Building"
+      ],
+      "lat": 42.276585,
+      "lng": -83.7425631
+    },
+    {
+      "id": "147",
+      "official_id": "1000105",
+      "slug": "stanford-lipsey-student-publications-building",
+      "names": [
+        "Lipsey Student Publications Building",
+        "Lipsey Stanford Student Publications Building",
+        "Stanford Lipsey Student Publications Building"
+      ],
+      "lat": 42.2770587,
+      "lng": -83.7422733
+    },
+    {
+      "id": "148",
+      "official_id": "1000216",
+      "slug": "tappan-hall",
+      "names": [
+        "TAP",
+        "Tappan Hall"
+      ],
+      "lat": 42.2754829,
+      "lng": -83.7392793
+    },
+    {
+      "id": "149",
+      "official_id": "1000209",
+      "slug": "alfred-a-taubman-health-sciences-library",
+      "names": [
+        "Alfred A. Taubman Health Sciences Library",
+        "TAUBL",
+        "Taubman A Alfred Health Sciences Library",
+        "Taubman Library"
+      ],
+      "lat": 42.2835708,
+      "lng": -83.7345732
+    },
+    {
+      "id": "151",
+      "official_id": "1000212",
+      "slug": "thomas-h-simpson-memorial-inst-medical-research",
+      "names": [
+        "Simpson Institute",
+        "Simpson Thomas H Memorial Inst Medical Research",
+        "Thomas H Simpson Memorial Inst Medical Research"
+      ],
+      "lat": 42.2818517,
+      "lng": -83.7306886
+    },
+    {
+      "id": "154",
+      "official_id": "1000313",
+      "slug": "towsley-center-for-continuing-medical-education",
+      "names": [
+        "Towsley Center For Continuing Medical Education",
+        "Towsley Center for Cont. Med Ed"
+      ],
+      "lat": 42.283666,
+      "lng": -83.7289312
+    },
+    {
+      "id": "155",
+      "official_id": "1000703",
+      "slug": "indoor-training-center",
+      "names": [
+        "Indoor Training Center"
+      ],
+      "lat": 42.2675223,
+      "lng": -83.7437541
+    },
+    {
+      "id": "156",
+      "official_id": "1000808",
+      "slug": "transportation-services-building",
+      "names": [
+        "Transportation Services Building"
+      ],
+      "lat": 42.2664342,
+      "lng": -83.7447729
+    },
+    {
+      "id": "157",
+      "official_id": "1000886",
+      "slug": "1443-washtenaw-ave-building",
+      "names": [
+        "1443 Washtenaw Ave Building"
+      ],
+      "lat": 42.274534,
+      "lng": -83.729832
+    },
+    {
+      "id": "158",
+      "official_id": "1000316",
+      "slug": "university-hospitals",
+      "names": [
+        "University Hospitals",
+        "UM HOSP"
+      ],
+      "lat": 42.2846242,
+      "lng": -83.7294271
+    },
+    {
+      "id": "159",
+      "official_id": "1000738",
+      "slug": "preston-robert-tisch-tennis-bld",
+      "names": [
+        "Preston Robert Tisch Tennis Bld",
+        "Tisch Preston Robert Tennis Bld",
+        "Varsity Tennis Bldg"
+      ],
+      "lat": 42.2535298,
+      "lng": -83.7434273
+    },
+    {
+      "id": "160",
+      "official_id": "1000065",
+      "slug": "victor-c-vaughan-house",
+      "names": [
+        "Victor C. Vaughan House",
+        "V. Vaughan",
+        "Vaughan Victor C House"
+      ],
+      "lat": 42.2836905,
+      "lng": -83.7350608
+    },
+    {
+      "id": "163",
+      "official_id": "1000167",
+      "slug": "west-hall",
+      "names": [
+        "WH",
+        "West Hall"
+      ],
+      "lat": 42.2758741,
+      "lng": -83.7363573
+    },
+    {
+      "id": "164",
+      "official_id": "1000066",
+      "slug": "west-quadrangle",
+      "names": [
+        "WQ",
+        "West Quadrangle"
+      ],
+      "lat": 42.2749226,
+      "lng": -83.742569
+    },
+    {
+      "id": "165",
+      "official_id": "1000159",
+      "slug": "william-l-clements-library",
+      "names": [
+        "William L. Clements Library",
+        "William Clements Library",
+        "Clements William L Library"
+      ],
+      "lat": 42.2754559,
+      "lng": -83.7379969
+    },
+    {
+      "id": "166",
+      "official_id": "1000184",
+      "slug": "william-w-cook-legal-research-library",
+      "names": [
+        "William W Cook Legal Research Library",
+        "Cook William W Legal Research Library",
+        "Law Library"
+      ],
+      "lat": 42.2738006,
+      "lng": -83.7393018
+    },
+    {
+      "id": "167",
+      "official_id": "1000813",
+      "slug": "william-d-revelli-band-rehearsal-hall",
+      "names": [
+        "William D Revelli Band Rehearsal Hall",
+        "Revelli William D Band Rehearsal Hall",
+        "Revelli Hall",
+        "REVELLI"
+      ],
+      "lat": 42.26925,
+      "lng": -83.7447048
+    },
+    {
+      "id": "168",
+      "official_id": "1008090",
+      "slug": "wolverine-tower",
+      "names": [
+        "Wolverine Tower"
+      ],
+      "lat": 42.2430057,
+      "lng": -83.7371951
+    },
+    {
+      "id": "169",
+      "official_id": "1000309",
+      "slug": "neuroscience-hospital-unit-1",
+      "names": [
+        "Women's Hospitals",
+        "WOMEN'S HOSP",
+        "Neuroscience Hospital Unit 1"
+      ],
+      "lat": 42.2827631,
+      "lng": -83.7290343
+    },
+    {
+      "id": "170",
+      "official_id": "1000709",
+      "slug": "yost-ice-arena",
+      "names": [
+        "Yost Ice Arena"
+      ],
+      "lat": 42.2676072,
+      "lng": -83.7410212
+    },
+    {
+      "id": "172",
+      "official_id": "1000064",
+      "slug": "madelon-louisa-stockwell-hall",
+      "names": [
+        "Stockwell Madelon Louisa Hall",
+        "Madelon Louisa Stockwell Hall",
+        "Stockwell Hall",
+        "STOCKWELL"
+      ],
+      "lat": 42.2787738,
+      "lng": -83.7316301
+    },
+    {
+      "id": "173",
+      "official_id": "1000858",
+      "slug": "madison-building",
+      "names": [
+        "Madison Building",
+        "109 East Madison"
+      ],
+      "lat": 42.274334,
+      "lng": -83.7478681
+    },
+    {
+      "id": "174",
+      "official_id": "1005240",
+      "slug": "towsley-childrens-house",
+      "names": [
+        "Towsley Center for Children",
+        "Towsley Childrens House"
+      ],
+      "lat": 42.2734254,
+      "lng": -83.7335699
+    },
+    {
+      "id": "177",
+      "official_id": "1000879",
+      "slug": "555-south-forest-building",
+      "names": [
+        "Family Assessment Clinic",
+        "555 South Forest Building"
+      ],
+      "lat": 42.2753296,
+      "lng": -83.7330322
+    },
+    {
+      "id": "178",
+      "official_id": "1000234",
+      "slug": "thomas-francis-jr-building",
+      "names": [
+        "Thomas Francis Jr. Building",
+        "SPH2",
+        "Francis Thomas Jr Public Health",
+        "Public Health II"
+      ],
+      "lat": 42.2802251,
+      "lng": -83.7300175
+    },
+    {
+      "id": "180",
+      "official_id": "1000399",
+      "slug": "north-campus-administrative-complex",
+      "names": [
+        "North Campus Administrative Complex",
+        "NCAC"
+      ],
+      "lat": 42.2963643,
+      "lng": -83.7028951
+    },
+    {
+      "id": "560",
+      "official_id": "0",
+      "slug": "the-law-quad",
+      "names": [
+        "The Law Quad"
+      ],
+      "lat": 42.2743301,
+      "lng": -83.7394104
+    },
+    {
+      "id": "561",
+      "official_id": "1002500",
+      "slug": "mitchell-field-building",
+      "names": [
+        "Mitchell Field Building",
+        "Mitchell Field"
+      ],
+      "lat": 42.2868627,
+      "lng": -83.7230774
+    },
+    {
+      "id": "562",
+      "official_id": "0",
+      "slug": "palmer-field",
+      "names": [
+        "Palmer Field"
+      ],
+      "lat": 42.2806015,
+      "lng": -83.7326126
+    },
+    {
+      "id": "563",
+      "official_id": "0",
+      "slug": "regents-plaza",
+      "names": [
+        "Regents Plaza"
+      ],
+      "lat": 42.2758942,
+      "lng": -83.7420731
+    },
+    {
+      "id": "564",
+      "official_id": "0",
+      "slug": "eda-u-gerstacker-grove",
+      "names": [
+        "Eda U. Gerstacker Grove",
+        "Diag - North Campus",
+        "The Grove"
+      ],
+      "lat": 42.2919884,
+      "lng": -83.7155838
+    },
+    {
+      "id": "565",
+      "official_id": "0",
+      "slug": "parking-customer-service",
+      "names": [
+        "Parking Customer Service",
+        "523 S. Division St. Building"
+      ],
+      "lat": 42.2754974,
+      "lng": -83.7436676
+    },
+    {
+      "id": "566",
+      "official_id": "0",
+      "slug": "northwood-v-apartments",
+      "names": [
+        "Northwood V Apartments"
+      ],
+      "lat": 42.2936974,
+      "lng": -83.6997986
+    },
+    {
+      "id": "570",
+      "official_id": "1000332",
+      "slug": "school-of-nursing-building-1",
+      "names": [
+        "NIB",
+        "School of Nursing Building 1",
+        "300 N Ingalls Building"
+      ],
+      "lat": 42.2834866,
+      "lng": -83.737778
+    },
+    {
+      "id": "181",
+      "official_id": "1000396",
+      "slug": "james-and-anne-duderstadt-center",
+      "names": [
+        "James And Anne Duderstadt Center",
+        "Duderstadt James And Anne Center",
+        "DC",
+        "Duderstadt Center"
+      ],
+      "lat": 42.2911498,
+      "lng": -83.7157922
+    },
+    {
+      "id": "182",
+      "official_id": "1000414",
+      "slug": "environmental-and-water-resources-engineering-bl",
+      "names": [
+        "EWRE",
+        "Environmental and Water Resources Engineering",
+        "Environmental And Water Resources Engineering Bl"
+      ],
+      "lat": 42.2927805,
+      "lng": -83.7133762
+    },
+    {
+      "id": "183",
+      "official_id": "1000437",
+      "slug": "carl-a-gerstacker-building",
+      "names": [
+        "Carl A. Gerstacker Building",
+        "Gerstacker Carl A Building",
+        "Gerstacker Building"
+      ],
+      "lat": 42.2897019,
+      "lng": -83.7144535
+    },
+    {
+      "id": "184",
+      "official_id": "1000402",
+      "slug": "bonisteel-interdisciplinary-research-building",
+      "names": [
+        "BIRB",
+        "Bonisteel Interdisciplinary Research Building"
+      ],
+      "lat": 42.2899442,
+      "lng": -83.71351
+    },
+    {
+      "id": "185",
+      "official_id": "1005107",
+      "slug": "306-s-state",
+      "names": [
+        "306 S State",
+        "Work Gallery 306 South State Street"
+      ],
+      "lat": 42.2790184,
+      "lng": -83.7408524
+    },
+    {
+      "id": "186",
+      "official_id": "1000178",
+      "slug": "newberry-hall",
+      "names": [
+        "Kelsey Museum of Archaeology",
+        "Newberry Hall",
+        "KELSEY"
+      ],
+      "lat": 42.2767369,
+      "lng": -83.7413388
+    },
+    {
+      "id": "187",
+      "official_id": "1005036",
+      "slug": "mary-sue-coleman-hall",
+      "names": [
+        "Mary Sue Coleman Hall",
+        "Life Sciences Institute Building",
+        "LSI"
+      ],
+      "lat": 42.2796354,
+      "lng": -83.7341956
+    },
+    {
+      "id": "188",
+      "official_id": "1005047",
+      "slug": "palmer-commons",
+      "names": [
+        "Palmer Commons",
+        "PALM"
+      ],
+      "lat": 42.2806602,
+      "lng": -83.7338924
+    },
+    {
+      "id": "189",
+      "official_id": "1000198",
+      "slug": "detroit-observatory",
+      "names": [
+        "Detroit Observatory"
+      ],
+      "lat": 42.2819649,
+      "lng": -83.7316759
+    },
+    {
+      "id": "190",
+      "official_id": "1000444",
+      "slug": "u-m-transportation-research-inst",
+      "names": [
+        "U-M Transportation Research Inst",
+        "UMTRI",
+        "Transportation Research Institute"
+      ],
+      "lat": 42.2980452,
+      "lng": -83.7032014
+    },
+    {
+      "id": "191",
+      "official_id": "1000120",
+      "slug": "michigan-union",
+      "names": [
+        "UNION",
+        "Michigan Union"
+      ],
+      "lat": 42.2751076,
+      "lng": -83.7415973
+    },
+    {
+      "id": "192",
+      "official_id": "1000191",
+      "slug": "lydia-mendelssohn-theatre",
+      "names": [
+        "Lydia Mendelssohn Theatre"
+      ],
+      "lat": 42.2792957,
+      "lng": -83.7375764
+    },
+    {
+      "id": "205",
+      "official_id": "0",
+      "slug": "mandell-l-berman-center",
+      "names": [
+        "Mandell L Berman Center",
+        "Hillel (Mandell L Berman Center)"
+      ],
+      "lat": 42.2724495,
+      "lng": -83.7299347
+    },
+    {
+      "id": "502",
+      "official_id": "0",
+      "slug": "international-center",
+      "names": [
+        "International Center"
+      ],
+      "lat": 42.2764587,
+      "lng": -83.7423477
+    },
+    {
+      "id": "503",
+      "official_id": "1000711",
+      "slug": "michigan-stadium",
+      "names": [
+        "Michigan Stadium"
+      ],
+      "lat": 42.2658668,
+      "lng": -83.7487008
+    },
+    {
+      "id": "506",
+      "official_id": "1008079",
+      "slug": "arbor-lakes-1",
+      "names": [
+        "Arbor Lakes 1",
+        "AL",
+        "Arbor Lakes"
+      ],
+      "lat": 42.3110671,
+      "lng": -83.6762648
+    },
+    {
+      "id": "507",
+      "official_id": "1000880",
+      "slug": "boyer-building",
+      "names": [
+        "Boyer Building"
+      ],
+      "lat": 42.2697479,
+      "lng": -83.7470058
+    },
+    {
+      "id": "508",
+      "official_id": "1005046",
+      "slug": "undergraduate-science-building",
+      "names": [
+        "USB",
+        "Undergraduate Science Building"
+      ],
+      "lat": 42.279903812127834,
+      "lng": -83.7352436737915
+    },
+    {
+      "id": "509",
+      "official_id": "1005037",
+      "slug": "alfred-a-taubman-biomedical-science-research-bldg",
+      "names": [
+        "Taubman A Alfred Biomedical Science Research Bldg",
+        "BSRB",
+        "Alfred A. Taubman Biomedical Science Research Bldg",
+        "Taubman Biomedical Science Research Building"
+      ],
+      "lat": 42.2818725,
+      "lng": -83.7345631
+    },
+    {
+      "id": "510",
+      "official_id": "1000324",
+      "slug": "w-k-kellogg-eye-center-1",
+      "names": [
+        "KEC",
+        "Kellogg Eye Center",
+        "W. K. Kellogg Eye Center",
+        "Kellogg W K Eye Center"
+      ],
+      "lat": 42.288003,
+      "lng": -83.7368556
+    },
+    {
+      "id": "521",
+      "official_id": "1000139",
+      "slug": "executive-residence",
+      "names": [
+        "Executive Residence (Ross Business School)",
+        "Executive Residence"
+      ],
+      "lat": 42.2727892,
+      "lng": -83.7360912
+    },
+    {
+      "id": "522",
+      "official_id": "1000135",
+      "slug": "sam-wyly-hall",
+      "names": [
+        "W-BUS",
+        "Wyly Sam Hall",
+        "Sam Wyly Hall",
+        "Wyly Hall (Business School)"
+      ],
+      "lat": 42.2723947,
+      "lng": -83.736132
+    },
+    {
+      "id": "523",
+      "official_id": "1000137",
+      "slug": "kresge-hall",
+      "names": [
+        "Kresge Hall",
+        "Kresge (Business School)",
+        "K-BUS"
+      ],
+      "lat": 42.2728545512327,
+      "lng": -83.73688518570862
+    },
+    {
+      "id": "524",
+      "official_id": "1005179",
+      "slug": "thayer-academic-building",
+      "names": [
+        "STB",
+        "Thayer Academic Building",
+        "202 South Thayer Building"
+      ],
+      "lat": 42.280079,
+      "lng": -83.7399691
+    },
+    {
+      "id": "525",
+      "official_id": "1005092",
+      "slug": "bob-and-betty-beyster-building",
+      "names": [
+        "BEYST",
+        "BBB",
+        "Bob and Betty Beyster Building"
+      ],
+      "lat": 42.2929649,
+      "lng": -83.7162668
+    },
+    {
+      "id": "526",
+      "official_id": "1005059",
+      "slug": "charles-r-walgreen-jr-drama-center",
+      "names": [
+        "Charles R. Walgreen Jr Drama Center",
+        "WDC",
+        "Walgreen Charles R Jr Drama Center",
+        "Walgreen Drama Center"
+      ],
+      "lat": 42.2918928,
+      "lng": -83.717662
+    },
+    {
+      "id": "527",
+      "official_id": "1005101",
+      "slug": "joan-sanford-weill-hall",
+      "names": [
+        "WEILL",
+        "Weill Hall (Ford School)",
+        "Joan & Sanford Weill Hall",
+        "Weill Joan & Sanford Hall"
+      ],
+      "lat": 42.2723897,
+      "lng": -83.7403009
+    },
+    {
+      "id": "528",
+      "official_id": "1005120",
+      "slug": "stephen-m-ross-academic-center",
+      "names": [
+        "Ross Stephen M Academic Center",
+        "Stephen M. Ross Academic Center",
+        "Academic Center",
+        "ROSS AC"
+      ],
+      "lat": 42.2685925,
+      "lng": -83.7410103
+    },
+    {
+      "id": "529",
+      "official_id": "1005117",
+      "slug": "rachel-upjohn-building",
+      "names": [
+        "Rachel Upjohn Building",
+        "Upjohn Rachel Building"
+      ],
+      "lat": 42.3076625,
+      "lng": -83.6752646
+    },
+    {
+      "id": "530",
+      "official_id": "1000425",
+      "slug": "aerospace-engineering-lab-plasma-research",
+      "names": [
+        "Wilson Center",
+        "Aerospace Engineering Lab Plasma Research"
+      ],
+      "lat": 42.2929305,
+      "lng": -83.7109274
+    },
+    {
+      "id": "531",
+      "official_id": "1005109",
+      "slug": "samuel-and-jean-frankel-cardiovascular-center-1",
+      "names": [
+        "CVC",
+        "Samuel And Jean Frankel Cardiovascular Center",
+        "Frankel Samuel And Jean Cardiovascular Center",
+        "Frankel Cardiovascular Center"
+      ],
+      "lat": 42.2833272,
+      "lng": -83.7311006
+    },
+    {
+      "id": "532",
+      "official_id": "1000046",
+      "slug": "laurel-harper-seeley-hall",
+      "names": [
+        "Laurel Harper Seeley Hall",
+        "Oxford Housing",
+        "Oh Laurel Harper Seeley Hall"
+      ],
+      "lat": 42.2742629,
+      "lng": -83.7251247
+    },
+    {
+      "id": "533",
+      "official_id": "1000812",
+      "slug": "research-museums-center",
+      "names": [
+        "Research Museums Center",
+        "RMC"
+      ],
+      "lat": 42.2363447,
+      "lng": -83.7282748
+    },
+    {
+      "id": "534",
+      "official_id": "1000449",
+      "slug": "north-campus-housing-service-bld",
+      "names": [
+        "North Campus Housing Service Bld",
+        "North Campus Service Building I"
+      ],
+      "lat": 42.2983853,
+      "lng": -83.6958878
+    },
+    {
+      "id": "535",
+      "official_id": "1000807",
+      "slug": "physical-properties-building",
+      "names": [
+        "Physical Properties Building"
+      ],
+      "lat": 42.2692707,
+      "lng": -83.7463245
+    },
+    {
+      "id": "536",
+      "official_id": "1002506",
+      "slug": "north-campus-facilities-services-building",
+      "names": [
+        "North Campus Facilities Services Building"
+      ],
+      "lat": 42.2985574,
+      "lng": -83.6978809
+    },
+    {
+      "id": "537",
+      "official_id": "1000205",
+      "slug": "1027-east-huron-building",
+      "names": [
+        "1027 E. Huron Building",
+        "1027 East Huron Building"
+      ],
+      "lat": 42.2815493,
+      "lng": -83.7359682
+    },
+    {
+      "id": "538",
+      "official_id": "1000874",
+      "slug": "1021-east-huron-building",
+      "names": [
+        "1021 East Huron Building",
+        "Association for Asian Studies"
+      ],
+      "lat": 42.2815509,
+      "lng": -83.7362035
+    },
+    {
+      "id": "539",
+      "official_id": "1000897",
+      "slug": "health-management-research",
+      "names": [
+        "Health Management Research Center",
+        "Health Management Research"
+      ],
+      "lat": 42.2815884,
+      "lng": -83.7363982
+    },
+    {
+      "id": "540",
+      "official_id": "1000197",
+      "slug": "mason-hall",
+      "names": [
+        "MH",
+        "Mason Hall"
+      ],
+      "lat": 42.2770726,
+      "lng": -83.739484
+    },
+    {
+      "id": "541",
+      "official_id": "1000152",
+      "slug": "james-b-angell-hall-and-tisch-hall",
+      "names": [
+        "TISCH",
+        "Tisch Hall",
+        "Angell James B Hall And Tisch Hall",
+        "James B Angell Hall And Tisch Hall"
+      ],
+      "lat": 42.27622845128436,
+      "lng": -83.739835615625
+    },
+    {
+      "id": "542",
+      "official_id": "1000175",
+      "slug": "haven-hall",
+      "names": [
+        "HH",
+        "Haven Hall"
+      ],
+      "lat": 42.2764518,
+      "lng": -83.7392176
+    },
+    {
+      "id": "543",
+      "official_id": "1005136",
+      "slug": "1327-geddes-avenue",
+      "names": [
+        "1327 Geddes Avenue",
+        "1327 Geddes Building"
+      ],
+      "lat": 42.2775116,
+      "lng": -83.7321472
+    },
+    {
+      "id": "544",
+      "official_id": "1005276",
+      "slug": "north-campus-research-complex-building-100",
+      "names": [
+        "North Campus Research Complex Building 100"
+      ],
+      "lat": 42.3009843,
+      "lng": -83.7032074
+    },
+    {
+      "id": "593",
+      "official_id": "0",
+      "slug": "shared-services-center",
+      "names": [
+        "Shared Services Center"
+      ],
+      "lat": 42.2388191,
+      "lng": -83.7321472
+    },
+    {
+      "id": "547",
+      "official_id": "1005188",
+      "slug": "stephen-m-ross-school-of-business-building",
+      "names": [
+        "R-BUS",
+        "Ross School of Business",
+        "Stephen M. Ross School Of Business Building"
+      ],
+      "lat": 42.2726756,
+      "lng": -83.737565
+    },
+    {
+      "id": "548",
+      "official_id": "1000257",
+      "slug": "church-st-parking-structure",
+      "names": [
+        "Key Office",
+        "Church St Parking Structure"
+      ],
+      "lat": 42.2759137,
+      "lng": -83.7341992
+    },
+    {
+      "id": "550",
+      "official_id": "1005102",
+      "slug": "brehm-tower",
+      "names": [
+        "Brehm Tower"
+      ],
+      "lat": 42.2882539,
+      "lng": -83.7372614
+    },
+    {
+      "id": "552",
+      "official_id": "1000728",
+      "slug": "elbel-field-locker-building",
+      "names": [
+        "Elbel Field Locker Building"
+      ],
+      "lat": 42.2715292,
+      "lng": -83.7447143
+    },
+    {
+      "id": "553",
+      "official_id": "1005177",
+      "slug": "north-quadrangle-residential-and-academic-complex",
+      "names": [
+        "North Quadrangle Residential And Academic Complex",
+        "NQ",
+        "North Quad"
+      ],
+      "lat": 42.2807591,
+      "lng": -83.7400689
+    },
+    {
+      "id": "554",
+      "official_id": "0",
+      "slug": "matthaei-botanical-gardens",
+      "names": [
+        "BOT GARD",
+        "Matthaei Botanical Gardens"
+      ],
+      "lat": 42.3018875,
+      "lng": -83.6631775
+    },
+    {
+      "id": "555",
+      "official_id": "1000005",
+      "slug": "nichols-arboretum-residence",
+      "names": [
+        "Nichols Arboretum",
+        "Nichols Arboretum Residence"
+      ],
+      "lat": 42.278881,
+      "lng": -83.7213207
+    },
+    {
+      "id": "556",
+      "official_id": "0",
+      "slug": "diag-central-campus",
+      "names": [
+        "Diag - Central Campus"
+      ],
+      "lat": 42.2769547,
+      "lng": -83.7382278
+    },
+    {
+      "id": "557",
+      "official_id": "0",
+      "slug": "elbel-field",
+      "names": [
+        "Elbel Field"
+      ],
+      "lat": 42.2709351,
+      "lng": -83.7450256
+    },
+    {
+      "id": "558",
+      "official_id": "0",
+      "slug": "ingalls-mall",
+      "names": [
+        "Ingalls Mall"
+      ],
+      "lat": 42.2794762,
+      "lng": -83.7382965
+    },
+    {
+      "id": "559",
+      "official_id": "0",
+      "slug": "junge-family-champions-center-mortenson-plaza",
+      "names": [
+        "Junge Champions Center",
+        "Junge Family Champions Center & Mortenson Plaza"
+      ],
+      "lat": 42.2644958,
+      "lng": -83.7462387
+    },
+    {
+      "id": "572",
+      "official_id": "0",
+      "slug": "e-s-george-reserve",
+      "names": [
+        "E.S. George Reserve"
+      ],
+      "lat": 42.4456596,
+      "lng": -84.0179749
+    },
+    {
+      "id": "573",
+      "official_id": "0",
+      "slug": "wave-field",
+      "names": [
+        "Wave Field"
+      ],
+      "lat": 42.2931137,
+      "lng": -83.711647
+    },
+    {
+      "id": "585",
+      "official_id": "1000405",
+      "slug": "nuclear-engineering-laboratories",
+      "names": [
+        "Nuclear Engineering Laboratories"
+      ],
+      "lat": 42.2912691,
+      "lng": -83.7146762
+    },
+    {
+      "id": "587",
+      "official_id": "1000424",
+      "slug": "wilson-student-team-project-center-1",
+      "names": [
+        "Wilson Student Team Project Center",
+        "Wilson Center"
+      ],
+      "lat": 42.29347618110009,
+      "lng": -83.7108033852478
+    },
+    {
+      "id": "586",
+      "official_id": "1005324",
+      "slug": "305-w-liberty",
+      "names": [
+        "305 W Liberty"
+      ],
+      "lat": 42.2791901,
+      "lng": -83.7515335
+    },
+    {
+      "id": "592",
+      "official_id": "0",
+      "slug": "bradford-house",
+      "names": [
+        "Bradford House"
+      ],
+      "lat": 42.2829018,
+      "lng": -83.7363892
+    },
+    {
+      "id": "575",
+      "official_id": "1005236",
+      "slug": "bahna-wrestling-center",
+      "names": [
+        "Bahna Wrestling Center",
+        "Bahna Wrestling  Center"
+      ],
+      "lat": 42.2521224,
+      "lng": -83.7430521
+    },
+    {
+      "id": "576",
+      "official_id": "0",
+      "slug": "detroit-center",
+      "names": [
+        "Detroit Center"
+      ],
+      "lat": 42.3482513,
+      "lng": -83.0588226
+    },
+    {
+      "id": "577",
+      "official_id": "0",
+      "slug": "center-for-the-education-of-women",
+      "names": [
+        "CEW",
+        "Center for the Education of Women"
+      ],
+      "lat": 42.2792702,
+      "lng": -83.7448273
+    },
+    {
+      "id": "579",
+      "official_id": "0",
+      "slug": "jeffries-hall",
+      "names": [
+        "Jeffries Hall",
+        "LSSH"
+      ],
+      "lat": 42.2730141,
+      "lng": -83.7400589
+    },
+    {
+      "id": "599",
+      "official_id": "0",
+      "slug": "the-connector",
+      "names": [
+        "The Connector"
+      ],
+      "lat": 42.274777,
+      "lng": -83.741918
+    },
+    {
+      "id": "595",
+      "official_id": "0",
+      "slug": "north-campus-research-complex-building-18",
+      "names": [
+        "North Campus Research Complex Building 18"
+      ],
+      "lat": 42.30062,
+      "lng": -83.70529
+    },
+    {
+      "id": "596",
+      "official_id": "0",
+      "slug": "north-campus-research-complex-building-16",
+      "names": [
+        "North Campus Research Complex Building 16"
+      ],
+      "lat": 42.30082,
+      "lng": -83.70765
+    },
+    {
+      "id": "597",
+      "official_id": "0",
+      "slug": "north-campus-research-complex-building-28",
+      "names": [
+        "North Campus Research Complex Building 28"
+      ],
+      "lat": 42.2987,
+      "lng": -83.70668
+    },
+    {
+      "id": "598",
+      "official_id": "0",
+      "slug": "north-campus-research-complex-building-520",
+      "names": [
+        "North Campus Research Complex Building 520"
+      ],
+      "lat": 42.29989,
+      "lng": -83.70306
+    },
+    {
+      "id": "12",
+      "official_id": "1",
+      "slug": "angell-hall",
+      "names": [
+        "Angell Hall",
+        "AH"
+      ],
+      "lat": 42.27672062866599,
+      "lng": -83.74002873467407
+    },
+    {
+      "id": "600",
+      "official_id": "0",
+      "slug": "munger-graduate-residences",
+      "names": [
+        "Munger Graduate Residences"
+      ],
+      "lat": 42.2745,
+      "lng": -83.7435711
+    },
+    {
+      "id": "601",
+      "official_id": "None",
+      "slug": "gates-lecture-hall-um-biological-station",
+      "names": [
+        "Gates Lecture Hall, UM Biological Station"
+      ],
+      "lat": 45.558653,
+      "lng": -84.6797864
+    },
+    {
+      "id": "602",
+      "official_id": "None",
+      "slug": "jeff-t-blau-hall",
+      "names": [
+        "Jeff T. Blau Hall"
+      ],
+      "lat": 42.273100653578524,
+      "lng": -83.7363058285614
+    },
+    {
+      "id": "608",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-14",
+      "names": [
+        "North Campus Research Complex Building 14"
+      ],
+      "lat": 42.30026126902778,
+      "lng": -83.70759546326599
+    },
+    {
+      "id": "612",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-20",
+      "names": [
+        "North Campus Research Complex Building 20"
+      ],
+      "lat": 42.29984069418788,
+      "lng": -83.70689808892212
+    },
+    {
+      "id": "603",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-22",
+      "names": [
+        "North Campus Research Complex Building 22"
+      ],
+      "lat": 42.29955105139111,
+      "lng": -83.7076330141922
+    },
+    {
+      "id": "604",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-25",
+      "names": [
+        "North Campus Research Complex Building 25"
+      ],
+      "lat": 42.29995972508797,
+      "lng": -83.70585202740631
+    },
+    {
+      "id": "605",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-26",
+      "names": [
+        "North Campus Research Complex Building 26"
+      ],
+      "lat": 42.299241568574296,
+      "lng": -83.70623826550445
+    },
+    {
+      "id": "606",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-30",
+      "names": [
+        "North Campus Research Complex Building 30"
+      ],
+      "lat": 42.29911460082482,
+      "lng": -83.70715558098755
+    },
+    {
+      "id": "607",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-35",
+      "names": [
+        "North Campus Research Complex Building 35"
+      ],
+      "lat": 42.29850753273433,
+      "lng": -83.70745598839721
+    },
+    {
+      "id": "609",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-36",
+      "names": [
+        "North Campus Research Complex Building 36"
+      ],
+      "lat": 42.29792029790157,
+      "lng": -83.7074720816513
+    },
+    {
+      "id": "610",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-50",
+      "names": [
+        "North Campus Research Complex Building 50"
+      ],
+      "lat": 42.29862656615451,
+      "lng": -83.70596468018493
+    },
+    {
+      "id": "611",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-60",
+      "names": [
+        "North Campus Research Complex Building 60"
+      ],
+      "lat": 42.29951534191299,
+      "lng": -83.70708047913513
+    },
+    {
+      "id": "614",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-80",
+      "names": [
+        "North Campus Research Complex Building 80"
+      ],
+      "lat": 42.299193955698264,
+      "lng": -83.70532095002136
+    },
+    {
+      "id": "613",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-90",
+      "names": [
+        "North Campus Research Complex Building 90"
+      ],
+      "lat": 42.300106529554874,
+      "lng": -83.70568036602936
+    },
+    {
+      "id": "615",
+      "official_id": "None",
+      "slug": "north-campus-research-complex-building-10",
+      "names": [
+        "North Campus Research Complex Building 10"
+      ],
+      "lat": 42.30040410512688,
+      "lng": -83.7069302754303
+    },
+    {
+      "id": "None",
+      "official_id": "None",
+      "slug": "campus-farm",
+      "names": [
+        "Campus Farm"
+      ],
+      "lat": 42.299023342596776,
+      "lng": -83.66476594971618
+    },
+    {
+      "id": "222",
+      "official_id": "0",
+      "slug": "baits-vera-housing-ii",
+      "names": [
+        "Baits Vera Housing II",
+        "Vera Baits Housing"
+      ],
+      "lat": 42.294387,
+      "lng": -83.723829
+    },
+    {
+      "id": "5378",
+      "official_id": "None",
+      "slug": "tappan-street-auxiliary-building",
+      "names": [
+        "TSAB",
+        "Tappan Street Auxiliary Building",
+        "Tappan Auxiliary Building"
+      ],
+      "lat": 42.273402326110855,
+      "lng": -83.73809754418335
+    },
+    {
+      "id": "1005169",
+      "official_id": "1005169",
+      "slug": "biological-sciences-building",
+      "names": [
+        "Biological Sciences Building"
+      ],
+      "lat": 42.27895919341548,
+      "lng": -83.73410641716919
+    },
+    {
+      "id": "0",
+      "official_id": "None",
+      "slug": "mcity",
+      "names": [
+        "Mcity"
+      ],
+      "lat": 42.2974095,
+      "lng": -83.704109
+    },
+    {
+      "id": "None",
+      "official_id": "None",
+      "slug": "one-north-main",
+      "names": [
+        "One North Main"
+      ],
+      "lat": 42.2819513,
+      "lng": -83.7484324
+    },
+    {
+      "id": "641",
+      "official_id": "1005413",
+      "slug": "trotter-multicultural-center-1",
+      "names": [
+        "Trotter Multicultural Center",
+        "Trotter Multicultural Building"
+      ],
+      "lat": 42.277221,
+      "lng": -83.740974
+    },
+    {
+      "id": "1005169",
+      "official_id": "1005169",
+      "slug": "museum-of-natural-history-1",
+      "names": [
+        "Museum of Natural History"
+      ],
+      "lat": 42.2789536,
+      "lng": -83.73485
+    },
+    {
+      "id": "None",
+      "official_id": "1005418",
+      "slug": "ford-robotics-building",
+      "names": [
+        "FMCRB",
+        "Ford Robotics Building"
+      ],
+      "lat": 42.2943,
+      "lng": -83.7097
+    },
+    {
+      "id": "1005439",
+      "official_id": "None",
+      "slug": "dance-building",
+      "names": [
+        "Dance",
+        "Dance Building"
+      ],
+      "lat": 42.2894365242966,
+      "lng": -83.7211245255371
+    },
+    {
+      "id": "None",
+      "official_id": "1005451",
+      "slug": "central-campus-classroom-building",
+      "names": [
+        "CCCB",
+        "Central Campus Classroom Building"
+      ],
+      "lat": 42.2785,
+      "lng": -83.7339
+    },
+    {
+      "id": "None",
+      "official_id": "5123",
+      "slug": "alumni-field",
+      "names": [
+        "Alumni Field"
+      ],
+      "lat": 42.2665,
+      "lng": -83.7432
+    },
+    {
+      "id": "None",
+      "official_id": "5357",
+      "slug": "phyllis-ocker-field-hockey-field",
+      "names": [
+        "Phyllis Ocker Field Hockey Field"
+      ],
+      "lat": 42.2634,
+      "lng": -83.7412
+    },
+    {
+      "id": "None",
+      "official_id": "5395",
+      "slug": "u-m-lacrosse-stadium",
+      "names": [
+        "U-M Lacrosse Stadium"
+      ],
+      "lat": 42.2516,
+      "lng": -83.7408
+    },
+    {
+      "id": "None",
+      "official_id": "None",
+      "slug": "u-m-soccer-stadium",
+      "names": [
+        "U-M Soccer Stadium"
+      ],
+      "lat": 42.2522,
+      "lng": -83.747
+    },
+    {
+      "id": "None",
+      "official_id": "None",
+      "slug": "u-m-track-and-field-stadium",
+      "names": [
+        "U-M Track and Field Stadium"
+      ],
+      "lat": 42.251,
+      "lng": -83.7422
+    },
+    {
+      "id": "None",
+      "official_id": "3546",
+      "slug": "michigan-boathouse",
+      "names": [
+        "Michigan Boathouse"
+      ],
+      "lat": 42.2154,
+      "lng": -83.5321
+    },
+    {
+      "id": "None",
+      "official_id": "None",
+      "slug": "radrick-farms",
+      "names": [
+        "Radrick Farms"
+      ],
+      "lat": 42.283,
+      "lng": -83.6647
+    },
+    {
+      "id": "3218",
+      "official_id": "3218",
+      "slug": "north-campus-research-complex-building-32",
+      "names": [
+        "North Campus Research Complex Building 32"
+      ],
+      "lat": 42.298118,
+      "lng": -83.707098
+    },
+    {
+      "id": "5510",
+      "official_id": "5510",
+      "slug": "palmer-field-temporary-facility-1",
+      "names": [
+        "Palmer Field Temporary Facility"
+      ],
+      "lat": 42.2806015,
+      "lng": -83.7326126
+    },
+    {
+      "id": "5516",
+      "official_id": "5516",
+      "slug": "center-for-academic-innovation",
+      "names": [
+        "Center for Academic Innovation",
+        "AI"
+      ],
+      "lat": 42.2787552,
+      "lng": -83.744455
+    },
+    {
+      "id": "0",
+      "official_id": "0",
+      "slug": "school-of-information-1",
+      "names": [
+        "School of Information",
+        "UMSI"
+      ],
+      "lat": 42.2930111,
+      "lng": -83.7198639
+    },
+    {
+      "id": "1005445",
+      "official_id": "1005445",
+      "slug": "hadley-family-recreation-well-being-center",
+      "names": [
+        "Hadley Family Recreation & Well-Being Center"
+      ],
+      "lat": 42.278,
+      "lng": -83.7329
+    }
+  ]
+}
