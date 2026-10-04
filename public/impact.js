@@ -11,6 +11,9 @@
  *   RescueImpact.chartConfigs(report, colors?)
  *     -> { cumulativeCo2e, dailyMeals, mealsByItem }   (Chart.js v4 configs)
  *   RescueImpact.summarize(entries)   -> totals for any list of entries
+ *   RescueImpact.formatMass(kg)       -> {value, unit: "g"|"kg", text}   (g below 1,000 g, kg from 1 kg)
+ *   report().display.{meals,co2e,miles,kg}  -> ready-to-print {value, unit, text}; USE THESE for cards.
+ *   Personal page: load impact_personal.js after this file (adds RescueImpact.personalReport).
  *   RescueImpact.entryImpact(itemId, qty)
  *
  * METHOD (per entry)
@@ -33,7 +36,23 @@
   const KG_CO2_PER_MILE = 0.4;
 
   // item_id, item_name, unit, grams_per_unit (null for drinks), type
-  const ITEMS = [{"id": "pizza_slice", "name": "Pizza", "unit": "slices", "grams_per_unit": 110.0, "type": "food"}, {"id": "taco", "name": "Tacos", "unit": "pieces", "grams_per_unit": 100.0, "type": "food"}, {"id": "mac_cheese", "name": "Mac & cheese", "unit": "servings (~1 cup)", "grams_per_unit": 200.0, "type": "food"}, {"id": "boxed_lunch", "name": "Boxed lunch", "unit": "boxes", "grams_per_unit": 450.0, "type": "food"}, {"id": "sandwich", "name": "Sandwich", "unit": "pieces", "grams_per_unit": 220.0, "type": "food"}, {"id": "chicken", "name": "Wings/tenders", "unit": "pieces", "grams_per_unit": 45.0, "type": "food"}, {"id": "pasta", "name": "Pasta", "unit": "servings", "grams_per_unit": 250.0, "type": "food"}, {"id": "donut", "name": "Donuts", "unit": "pieces", "grams_per_unit": 65.0, "type": "food"}, {"id": "bagel", "name": "Bagels", "unit": "pieces", "grams_per_unit": 105.0, "type": "food"}, {"id": "cookie", "name": "Cookies", "unit": "pieces", "grams_per_unit": 35.0, "type": "food"}, {"id": "salad", "name": "Salad", "unit": "servings", "grams_per_unit": 200.0, "type": "food"}, {"id": "fruit", "name": "Fruit", "unit": "pieces", "grams_per_unit": 150.0, "type": "food"}, {"id": "coffee", "name": "Coffee", "unit": "cups (12 oz)", "grams_per_unit": null, "type": "drink"}, {"id": "tea", "name": "Tea", "unit": "cups (12 oz)", "grams_per_unit": null, "type": "drink"}, {"id": "milk", "name": "Milk", "unit": "cartons (8 oz)", "grams_per_unit": null, "type": "drink"}];
+  const ITEMS = [
+    ["pizza_slice", "Pizza", "slices", 110, "food"],
+    ["taco", "Tacos", "pieces", 100, "food"],
+    ["mac_cheese", "Mac & cheese", "servings (~1 cup)", 200, "food"],
+    ["boxed_lunch", "Boxed lunch", "boxes", 450, "food"],
+    ["sandwich", "Sandwich", "pieces", 220, "food"],
+    ["chicken", "Wings/tenders", "pieces", 45, "food"],
+    ["pasta", "Pasta", "servings", 250, "food"],
+    ["donut", "Donuts", "pieces", 65, "food"],
+    ["bagel", "Bagels", "pieces", 105, "food"],
+    ["cookie", "Cookies", "pieces", 35, "food"],
+    ["salad", "Salad", "servings", 200, "food"],
+    ["fruit", "Fruit", "pieces", 150, "food"],
+    ["coffee", "Coffee", "cups (12 oz)", null, "drink"],
+    ["tea", "Tea", "cups (12 oz)", null, "drink"],
+    ["milk", "Milk", "cartons (8 oz)", null, "drink"],
+  ].map(([id, name, unit, grams, type]) => ({ id, name, unit, grams_per_unit: grams, type }));
   const BY_ID = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
 
   // ---------- core conversion ----------
@@ -54,6 +73,35 @@
     }
     t.miles = t.co2e / KG_CO2_PER_MILE;
     return t;
+  }
+
+  // ---------- display formatting (unit auto-scaling) ----------
+  /** kg -> {value, unit, text}. Shows grams below 1,000 g, kilograms from 1 kg up. */
+  function formatMass(kg) {
+    const g = kg * 1000;
+    if (Math.round(g) < 1000) {
+      const v = Math.round(g);
+      return { value: v, unit: "g", text: v.toLocaleString("en-US") + " g" };
+    }
+    const d = kg < 10 ? 1 : 0;
+    const v = +kg.toFixed(d);
+    return { value: v, unit: "kg", text: v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }) + " kg" };
+  }
+
+  /** Meals / miles: 1 decimal under 10, whole numbers above; tiny values show "<0.1". */
+  function formatCount(v, unit) {
+    const text = v > 0 && v < 0.1 ? "<0.1" : v < 10 ? v.toFixed(1) : Math.round(v).toLocaleString("en-US");
+    return { value: v, unit, text };
+  }
+
+  /** The four headline metrics, ready to print. */
+  function displayTotals(t) {
+    return {
+      meals: formatCount(t.meals, "meals"),
+      co2e: formatMass(t.co2e),
+      miles: formatCount(t.miles, "miles"),
+      kg: formatMass(t.kg),
+    };
   }
 
   // ---------- dates (local time, "YYYY-MM-DD") ----------
@@ -126,7 +174,15 @@
       cumCo2e: dailyCo2e.map((v) => (a += v)), cumMeals: dailyMeals.map((v) => (b += v)),
     };
     const byItem = Object.values(byItemMap).sort((x, y) => y.meals - x.meals);
-    return { range: { ...range, start: fmt(range.start), end: fmt(range.end) }, totals, previous, change, runRate, series, byItem };
+    const display = {
+      ...displayTotals(totals),
+      runRate: {
+        mealsPerWeek: formatCount(runRate.mealsPerWeek, "meals"),
+        co2ePerWeek: formatMass(runRate.co2ePerWeek),
+        co2ePerYearProjection: formatMass(runRate.co2ePerYearProjection),
+      },
+    };
+    return { range: { ...range, start: fmt(range.start), end: fmt(range.end) }, totals, display, previous, change, runRate, series, byItem };
   }
 
   // ---------- Chart.js v4 configs (pass to new Chart(canvas, cfg)) ----------
@@ -136,11 +192,16 @@
     const base = { maintainAspectRatio: false };
     const xAxis = { ticks: { maxTicksLimit: 8, color: c.text }, grid: { display: false } };
     const yAxis = { beginAtZero: true, ticks: { color: c.text } };
+    // Plot the cumulative line in grams until it passes 1,000 g, then in kilograms.
+    const maxC = Math.max(0, ...s.cumCo2e);
+    const unit = Math.round(maxC * 1000) < 1000 ? "g" : "kg";
+    const cumData = s.cumCo2e.map((v) => (unit === "g" ? +(v * 1000).toFixed(1) : +v.toFixed(3)));
     return {
+      units: { cumulativeCo2e: unit },
       cumulativeCo2e: {
         type: "line",
-        data: { labels: s.labels, datasets: [{ label: "CO2e avoided (kg)", data: s.cumCo2e, borderColor: c.main, backgroundColor: c.main + "33", fill: true, pointRadius: s.labels.length < 3 ? 5 : 0, tension: 0.25 }] },
-        options: { ...base, interaction: { mode: "index", intersect: false }, scales: { x: xAxis, y: yAxis }, plugins: { legend: { display: false } } },
+        data: { labels: s.labels, datasets: [{ label: "CO₂ emission avoided (" + unit + ")", data: cumData, borderColor: c.main, backgroundColor: c.main + "33", fill: true, pointRadius: 0, tension: 0.25 }] },
+        options: { ...base, interaction: { mode: "index", intersect: false }, scales: { x: xAxis, y: { ...yAxis, ticks: { color: c.text, callback: (v) => v + " " + unit } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => ctx.parsed.y + " " + unit } } } },
       },
       dailyMeals: {
         type: "bar",
@@ -155,58 +216,7 @@
     };
   }
 
-  // ---------- personal page ----------
-  // Same math as the community view; entries are just filtered to one user
-  // (WHERE user_id = ? AND status = 'picked_up'). Entries may carry extra fields (id, listing_id...).
-  const MILESTONES = { meals: [1, 10, 25, 50, 100, 250, 500], co2e: [1, 5, 10, 25, 50, 100] };
-
-  function milestoneProgress(value, list) {
-    const achieved = list.filter((t) => value >= t);
-    const next = list.find((t) => value < t);
-    const prev = achieved.length ? achieved[achieved.length - 1] : 0;
-    return { achieved, next: next === undefined ? null : next, progress: next === undefined ? 1 : (value - prev) / (next - prev) };
-  }
-
-  /** Consecutive weeks (Mon-Sun) with at least one pickup. Current week not yet empty-penalised. */
-  function weeklyStreak(entries, today) {
-    const wk = (d) => fmt(addDays(d, -((d.getDay() + 6) % 7)));
-    const weeks = new Set(entries.map((e) => wk(parse(e.date))));
-    let w = parse(wk(startOfDay(today || new Date())));
-    if (!weeks.has(fmt(w))) w = addDays(w, -7);
-    let n = 0;
-    while (weeks.has(fmt(w))) { n++; w = addDays(w, -7); }
-    return n;
-  }
-
-  /**
-   * personalReport(userEntries, "week"|"month"|"all", today?, communityTotals?)
-   *   communityTotals = summarize(allEntries) (optional, enables "your share")
-   * Returns everything report() returns, plus:
-   *   lifetime {kg, meals, co2e, miles, drinks}  all-time totals (the 4 headline metrics)
-   *   pickups, firstPickup, weeklyStreak
-   *   milestones {meals, co2e} -> {achieved[], next, progress 0..1}
-   *   communityShare {meals, co2e} in % (null if no community totals)
-   *   recent[]  last 10 pickups with per-pickup impact
-   */
-  function personalReport(entries, rangeName, today, community) {
-    const rep = report(entries, rangeName, today);
-    const lifetime = summarize(entries);
-    const share = community ? {
-      meals: community.meals > 0 ? (lifetime.meals / community.meals) * 100 : null,
-      co2e: community.co2e > 0 ? (lifetime.co2e / community.co2e) * 100 : null,
-    } : null;
-    const recent = [...entries].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)).slice(0, 10)
-      .map((e) => ({ ...e, name: BY_ID[e.item].name, unit: BY_ID[e.item].unit, ...entryImpact(e.item, e.qty) }));
-    return {
-      ...rep, lifetime, pickups: entries.length,
-      firstPickup: entries.length ? entries.map((e) => e.date).sort()[0] : null,
-      weeklyStreak: weeklyStreak(entries, today),
-      milestones: { meals: milestoneProgress(lifetime.meals, MILESTONES.meals), co2e: milestoneProgress(lifetime.co2e, MILESTONES.co2e) },
-      communityShare: share, recent,
-    };
-  }
-
-  const api = { personalReport, weeklyStreak, ITEMS, KG_PER_MEAL, CO2E_PER_KG, KG_CO2_PER_MILE, entryImpact, summarize, getRange, previousRange, report, chartConfigs };
+  const api = { ITEMS, formatMass, formatCount, displayTotals, fmtDate: fmt, parseDate: parse, addDays, startOfDay, KG_PER_MEAL, CO2E_PER_KG, KG_CO2_PER_MILE, entryImpact, summarize, getRange, previousRange, report, chartConfigs };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.RescueImpact = api;
 })(typeof window !== "undefined" ? window : globalThis);

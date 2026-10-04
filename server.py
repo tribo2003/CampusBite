@@ -1,6 +1,6 @@
 import food_alerts
 from env_settings import env_value, smtp_password
-import ssl, json, os, secrets, sqlite3, threading, urllib.request, urllib.parse
+import ssl, json, os, secrets, sqlite3, threading, urllib.request, urllib.parse, base64, binascii
 import hashlib, hmac, re, time, csv
 from http.cookies import SimpleCookie
 from event_notifications import send_notification
@@ -44,6 +44,7 @@ with connect() as c:
         c.execute('ALTER TABLE user_events ADD COLUMN status INTEGER NOT NULL DEFAULT 1')
         c.execute('UPDATE user_events SET status=0 WHERE closed=1')
     c.execute('CREATE UNIQUE INDEX IF NOT EXISTS unique_organizer_key ON user_events(organizer_key)')
+    c.execute('CREATE TABLE IF NOT EXISTS organizer_key_claims (event_id TEXT PRIMARY KEY, claim_hash TEXT NOT NULL UNIQUE, organizer_key TEXT NOT NULL, expires TEXT NOT NULL)')
     c.execute('CREATE TABLE IF NOT EXISTS event_notification_outbox (id TEXT PRIMARY KEY, recipient TEXT NOT NULL, payload TEXT NOT NULL, status TEXT NOT NULL, error TEXT NOT NULL DEFAULT "")')
     if 'channel' not in {r['name'] for r in c.execute('PRAGMA table_info(event_notification_outbox)')}: c.execute("ALTER TABLE event_notification_outbox ADD COLUMN channel TEXT NOT NULL DEFAULT 'email'")
     columns={r['name'] for r in c.execute('PRAGMA table_info(food_reports)')}
@@ -85,6 +86,7 @@ def tree_profile(uid):
 GEOCODE_LOCK=threading.Lock()
 LAST_GEOCODE=0
 AUTH_ATTEMPTS={}
+EVENT_CREATE_ATTEMPTS={}
 AUTH_ITERATIONS=600000
 def password_digest(password,salt):
     return hashlib.pbkdf2_hmac('sha256',password.encode(),bytes.fromhex(salt),AUTH_ITERATIONS).hex()
@@ -251,6 +253,14 @@ class Handler(SimpleHTTPRequestHandler):
                     if path=='/api/organizer-close': c.execute('UPDATE user_events SET status=0,closed=1 WHERE id=?',(row['id'],))
                     event=json.loads(row['payload']);event.pop('contact_email',None);event.pop('contact_phone',None);event['status']=False if path=='/api/organizer-close' else bool(row['status'])
                 return self.reply(200,{'event':event})
+            if path=='/api/organizer-key-claim':
+                claim_token=str(body.get('claim_token',''))
+                if not re.fullmatch(r'cb_claim_[A-Za-z0-9_-]{43}',claim_token): return self.reply(403,{'error':'This organizer-key link is invalid.'})
+                digest=hashlib.sha256(claim_token.encode()).hexdigest()
+                with LOCK,connect() as c:
+                    row=c.execute('SELECT organizer_key,expires FROM organizer_key_claims WHERE claim_hash=?',(digest,)).fetchone()
+                    if not row or datetime.fromisoformat(row['expires'])<=datetime.now(timezone.utc): return self.reply(403,{'error':'This organizer-key link is invalid or expired.'})
+                return self.reply(200,{'organizer_key':row['organizer_key']})
             if path=='/api/geocode':
                 global LAST_GEOCODE
                 query=str(body.get('query','')).strip()
@@ -278,7 +288,19 @@ class Handler(SimpleHTTPRequestHandler):
                 except Exception: return self.reply(502,{'error':'Place search is unavailable. Please try again later or choose a campus building.'})
                 finally: GEOCODE_LOCK.release()
             if path=='/api/user-events':
+                address=self.client_address[0];now_ts=time.time()
+                with LOCK:
+                    attempts=[t for t in EVENT_CREATE_ATTEMPTS.get(address,[]) if now_ts-t<3600]
+                    if len(attempts)>=10:return self.reply(429,{'error':'Too many events were added from this device. Please try again later.'})
+                    EVENT_CREATE_ATTEMPTS[address]=attempts
                 title=str(body.get('title','')).strip();organizer=str(body.get('organizer','')).strip();description=str(body.get('description','')).strip()
+                image_data=str(body.get('image_data',''))
+                image_match=re.fullmatch(r'data:image/(jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})',image_data)
+                if not image_match: return self.reply(400,{'error':'Upload an event photo in JPG, PNG or WebP format.'})
+                try: image_bytes=base64.b64decode(image_match.group(2),validate=True)
+                except (ValueError,binascii.Error): return self.reply(400,{'error':'The event photo could not be read.'})
+                signatures={'jpeg':image_bytes.startswith(b'\xff\xd8\xff'),'png':image_bytes.startswith(b'\x89PNG\r\n\x1a\n'),'webp':len(image_bytes)>=12 and image_bytes[:4]==b'RIFF' and image_bytes[8:12]==b'WEBP'}
+                if not image_bytes or len(image_bytes)>3*1024*1024 or not signatures[image_match.group(1)]: return self.reply(400,{'error':'Upload a valid JPG, PNG or WebP photo no larger than 3 MB.'})
                 channel=body.get('notification_channel')
                 if channel not in ('email','sms'): return self.reply(400,{'error':'Choose Email or SMS.'})
                 contact_phone=re.sub(r'[\s().-]','',str(body.get('contact_phone','')).strip()) if channel=='sms' else ''
@@ -323,8 +345,8 @@ class Handler(SimpleHTTPRequestHandler):
                     seen.add(food_id);f=FOOD_FACTORS[food_id]
                     food_items.append({'item_id':food_id,'item_name':f['item_name'],'unit':f['unit'],'quantity':int(quantity)})
                 item_id=food_items[0]['item_id'];qty=food_items[0]['quantity'];factor=FOOD_FACTORS[item_id]
-                eid='user:'+secrets.token_urlsafe(12);token=secrets.token_urlsafe(32);organizer_key='cb_org_'+secrets.token_urlsafe(32)
-                event={'id':eid,'title':title,'organizer':organizer or 'Community organizer','description':description,'location':building['names'][0]+(' · '+str(body.get('room',''))[:100] if body.get('room') else ''),'lat':building['lat'],'lng':building['lng'],'building_slug':building['slug'],'start':start.astimezone(ZoneInfo('America/Detroit')).strftime('%Y%m%dT%H%M%S'),'event_date':start.astimezone(ZoneInfo('America/Detroit')).date().isoformat(),'deadline':deadline,'quantity':qty,'confirmed':bool(deadline),'category':'Community event','food':body.get('food') if body.get('food') in ('pizza','fruit','bowls','bagels','sandwiches') else 'bowls','sample':False,'url':'','evidence':[]}
+                eid='user:'+secrets.token_urlsafe(12);token=secrets.token_urlsafe(32);organizer_key='cb_org_'+secrets.token_urlsafe(32);claim_token='cb_claim_'+secrets.token_urlsafe(32)
+                event={'id':eid,'title':title,'organizer':organizer or 'Community organizer','description':description,'image_url':image_data,'location':building['names'][0]+(' · '+str(body.get('room',''))[:100] if body.get('room') else ''),'lat':building['lat'],'lng':building['lng'],'building_slug':building['slug'],'start':start.astimezone(ZoneInfo('America/Detroit')).strftime('%Y%m%dT%H%M%S'),'event_date':start.astimezone(ZoneInfo('America/Detroit')).date().isoformat(),'deadline':deadline,'quantity':qty,'confirmed':bool(deadline),'category':'Community event','food':body.get('food') if body.get('food') in ('pizza','fruit','bowls','bagels','sandwiches') else 'bowls','sample':False,'url':'','evidence':[]}
                 if factor:
                     event.update(item_id=item_id,item_name=factor['item_name'],unit=factor['unit'],item_ids=[item['item_id'] for item in food_items],food_items=food_items)
                     event['food']={'pizza_slice':'pizza','fruit':'fruit','bagel':'bagels','sandwich':'sandwiches'}.get(item_id,'bowls')
@@ -334,10 +356,12 @@ class Handler(SimpleHTTPRequestHandler):
                 event['contact_phone']=contact_phone
                 recipient=contact_phone if channel=='sms' else contact_email
                 with LOCK,connect() as c:
+                    EVENT_CREATE_ATTEMPTS[address].append(now_ts)
                     c.execute('INSERT INTO user_events (id,token,payload,closed,organizer_key,status) VALUES (?,?,?,0,?,1)',(eid,token,json.dumps(event),hashlib.sha256(organizer_key.encode()).hexdigest()))
-                    if recipient: c.execute('INSERT INTO event_notification_outbox (id,recipient,payload,status,channel) VALUES (?,?,?,?,?)',(eid,recipient,json.dumps({'title':title,'key':organizer_key}),'pending_configuration',channel))
+                    c.execute('INSERT INTO organizer_key_claims VALUES (?,?,?,?)',(eid,hashlib.sha256(claim_token.encode()).hexdigest(),organizer_key,(datetime.now(timezone.utc)+timedelta(days=30)).isoformat()))
+                    if recipient: c.execute('INSERT INTO event_notification_outbox (id,recipient,payload,status,channel) VALUES (?,?,?,?,?)',(eid,recipient,json.dumps({'title':title,'key':organizer_key,'claim_token':claim_token}),'pending_configuration',channel))
                 email_status=send_notification(DB,eid) if recipient else 'no_email'
-                return self.reply(201,{'id':eid,'token':token,'event':event,'organizer_key':organizer_key,'email_status':email_status,'notification_status':email_status,'notification_channel':channel})
+                return self.reply(201,{'id':eid,'token':token,'event':event,'email_status':email_status,'notification_status':email_status,'notification_channel':channel})
             if path in ('/api/auth/register','/api/auth/login'):
                 # Limit repeated authentication requests from the same client.
                 with LOCK:
